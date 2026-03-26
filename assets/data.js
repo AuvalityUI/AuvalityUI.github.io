@@ -68,7 +68,7 @@ const SITE_DATA = {
   services: {
     pill:  "Services",
     title: "What I Do",           // Section heading
-    desc:  "Specialised game UI/UX and logo design across six distinct visual styles.",
+    desc:  "Placeholder",
 
     /**
      * Each card has:
@@ -157,8 +157,8 @@ const SITE_DATA = {
 
     /** Two bio paragraphs. Use <strong> tags for bold inline text. */
     bio: [
-      "I'm a freelance game UI/UX designer with a passion for <strong>immersive, handcrafted interfaces</strong> that feel native to their world. Every pixel is intentional.",
-      "Whether it's a minimal HUD or an elaborate fantasy menu system, I work closely with clients to hit the exact tone their game demands.",
+      "Placeholder",
+      "Placeholder",
     ],
 
     stats: [
@@ -172,22 +172,22 @@ const SITE_DATA = {
       {
         step:  "01",
         title: "Briefing",
-        desc:  "We discuss your vision, references, and goals in detail.",
+        desc:  "Placeholder",
       },
       {
         step:  "02",
         title: "Concept",
-        desc:  "Initial direction sketches and style explorations.",
+        desc:  "Placeholder",
       },
       {
         step:  "03",
         title: "Design",
-        desc:  "Full production of all screens and assets.",
+        desc:  "Placeholder",
       },
       {
         step:  "04",
         title: "Delivery",
-        desc:  "Source files, exports, and any follow-up revisions.",
+        desc:  "Placeholder",
       },
     ],
   },
@@ -199,37 +199,37 @@ const SITE_DATA = {
   testimonials: {
     pill:  "Testimonials",
     title: "What Clients Say",
-    desc:  "Honest words from people I've worked with.",
+    desc:  "Placeholder",
 
     reviews: [
       {
-        body:   "Absolutely nailed the sci-fi aesthetic — the HUD feels like it shipped with the game engine itself.",
+        body:   "Placeholder",
         name:   "Client Name",
-        role:   "Indie Studio Lead",
+        role:   "Placeholder",
         avatar: "CS",
       },
       {
-        body:   "Fast turnaround, clear communication, and the logo perfectly captured our brand.",
+        body:   "Placeholder",
         name:   "Client Name",
-        role:   "Game Developer",
+        role:   "Placeholder",
         avatar: "CN",
       },
       {
-        body:   "The fantasy UI set we commissioned is stunning — players keep commenting on how polished it looks.",
+        body:   "Placeholder",
         name:   "Client Name",
-        role:   "RPG Studio",
+        role:   "Placeholder",
         avatar: "CN",
       },
       {
-        body:   "Delivered exactly what I asked for on the first revision. Will hire again.",
+        body:   "Placeholder",
         name:   "Client Name",
-        role:   "Solo Developer",
+        role:   "Placeholder",
         avatar: "CN",
       },
       {
-        body:   "The cartoony style was spot-on — vibrant without being overwhelming.",
+        body:   "Placeholder.",
         name:   "Client Name",
-        role:   "Mobile Games",
+        role:   "Placeholder",
         avatar: "CN",
       },
     ],
@@ -240,14 +240,14 @@ const SITE_DATA = {
   ───────────────────────────────────────────────────────────── */
   pricing: {
     pill:  "Pricing",
-    title: "Simple, Transparent Pricing",
-    desc:  "Pick the plan that fits your scope. Custom quotes available on request.",
+    title: "Transparent Pricing",
+    desc:  "Placeholder",
 
     plans: [
       {
         badge:    "Starter",
         name:     "Basic",
-        desc:     "Great for single screens or simple logo work.",
+        desc:     "Placeholder",
         price:    "49",         // Number only — $ symbol added automatically
         priceNote:"per screen",
         features: [
@@ -261,31 +261,31 @@ const SITE_DATA = {
       {
         badge:    "Most Popular",
         name:     "Standard",
-        desc:     "Full menu flow or mid-sized branding package.",
+        desc:     "Placeholder",
         price:    "149",
         priceNote:"per project",
         features: [
-          "Up to 5 UI screens",
-          "4 revision rounds",
-          "PNG + source file delivery",
-          "Priority communication",
-          "5-day turnaround",
+          "Placeholder",
+          "Placeholder",
+          "Placeholder",
+          "Placeholder",
+          "Placeholder",
         ],
         featured: true,         // Adds highlight border + glow
       },
       {
         badge:    "Full Suite",
         name:     "Premium",
-        desc:     "Complete UI system for a full game release.",
+        desc:     "Placeholder",
         price:    "349",
         priceNote:"per project",
         features: [
-          "Unlimited screens",
-          "Unlimited revisions",
-          "Full asset kit delivery",
-          "Style guide included",
-          "Priority support",
-          "10-day turnaround",
+          "Placeholder",
+          "Placeholder",
+          "Placeholder",
+          "Placeholder",
+          "Placeholder",
+          "Placeholder",
         ],
         featured: false,
       },
@@ -298,7 +298,7 @@ const SITE_DATA = {
   booking: {
     pill:  "Booking",
     title: "Let's Work Together",
-    desc:  "Fill out the form below and I'll get back to you within 24 hours.",
+    desc:  "Fill out the form below and I'll get back to you within Placeholder hours.",
 
     successTitle:   "Request Sent!",
     successMessage: "Thanks for reaching out — expect a reply within 24 hours.",
@@ -317,7 +317,7 @@ const SITE_DATA = {
   ───────────────────────────────────────────────────────────── */
   footer: {
     brandName: "Game UI Designer",
-    tagline:   "Crafting immersive interfaces for games.",
+    tagline:   "Placeholder",
     copyright: "© 2025 Auvality · All rights reserved",
 
     socials: {
