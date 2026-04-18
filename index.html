@@ -57,76 +57,20 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
-      cursor: none;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(to left,  rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size:
-        26px 26px,
-        calc((100vw - 1020px) / 2 + 1px) 100%,
-        calc((100vw - 1020px) / 2 + 1px) 100%;
-      background-position: center center, left center, right center;
-      background-repeat: repeat, no-repeat, no-repeat;
+      cursor: auto;
     }
 
-    body::before, body::after {
-      content: '';
-      position: fixed; top: 0; bottom: 0; width: 1px;
-      background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.07) 10%, rgba(255,255,255,0.07) 90%, transparent 100%);
-      pointer-events: none; z-index: 1;
-    }
-    body::before { left:  calc((100vw - 1020px) / 2); }
-    body::after  { right: calc((100vw - 1020px) / 2); }
 
-    a { text-decoration: none; color: inherit; cursor: none; }
+
+    a { text-decoration: none; color: inherit; cursor: pointer; }
     ul { list-style: none; }
-    button { cursor: none; border: none; background: none; font-family: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
-    /* ── GRAIN ─────────────────────────────────────────────── */
-    .grain {
-      position: fixed; inset: 0;
-      pointer-events: none; z-index: 9000; opacity: 0.055;
-      background-image: url("data:image/svg+xml,<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-      background-size: 180px 180px;
-    }
+    /* grain removed */
 
-    /* ── SPOTLIGHT ──────────────────────────────────────────── */
-    .spotlight {
-      position: fixed; inset: 0;
-      pointer-events: none; z-index: 2;
-    }
+    /* spotlight removed */
 
-    /* ── CUSTOM CURSOR ──────────────────────────────────────── */
-    .c-dot {
-      position: fixed;
-      left: 0; top: 0;
-      width: 6px; height: 6px;
-      background: #fff; border-radius: 50%;
-      pointer-events: none; z-index: 30001;
-      will-change: transform;
-      transition: width .2s ease, height .2s ease, opacity .2s ease, box-shadow .2s ease;
-      box-shadow: 0 0 8px rgba(255,255,255,0.55);
-    }
-    .c-dot.folder-hover {
-      width: 10px; height: 10px;
-      box-shadow: 0 0 16px rgba(255,255,255,0.7), 0 0 0 3px rgba(255,255,255,0.12);
-    }
-    .c-ring {
-      position: fixed;
-      left: 0; top: 0;
-      width: 30px; height: 30px;
-      border: 1.5px solid rgba(255,255,255,0.25); border-radius: 50%;
-      pointer-events: none; z-index: 30000;
-      will-change: transform;
-      transition: width .3s ease, height .3s ease, border-color .3s ease, border-width .3s ease;
-    }
-    .c-ring.hovered { width: 48px; height: 48px; border-color: rgba(255,255,255,0.15); }
-    .c-ring.folder-hover {
-      width: 54px; height: 54px;
-      border-color: rgba(255,255,255,0.4);
-      border-width: 1.5px; border-style: dashed;
-    }
+    /* custom cursor removed */
 
     /* ── LAYOUT ─────────────────────────────────────────────── */
     .container { max-width: 1020px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 3; }
@@ -145,12 +89,6 @@
       border-bottom: 1px solid var(--border);
       animation: fadeDown .9s cubic-bezier(.16,1,.3,1) both;
       position: relative;
-    }
-    .header::after {
-      content: '';
-      position: absolute; bottom: -1px; left: 0; right: 0; height: 1px;
-      background: linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent);
-      pointer-events: none;
     }
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-14px); }
@@ -235,18 +173,6 @@
       content: ''; position: absolute; inset: 0;
       background: radial-gradient(ellipse 70% 80% at 50% 50%, transparent 30%, var(--bg) 100%);
       pointer-events: none; z-index: 0;
-    }
-    .hero::after {
-      content: ''; position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      width: 700px; height: 400px;
-      background: radial-gradient(ellipse, rgba(255,255,255,0.04) 0%, transparent 70%);
-      pointer-events: none;
-      animation: heroGlow 6s ease-in-out infinite alternate;
-    }
-    @keyframes heroGlow {
-      from { opacity: .6; transform: translate(-50%,-50%) scale(1); }
-      to   { opacity: 1;  transform: translate(-50%,-50%) scale(1.08); }
     }
     .hero > * { position: relative; z-index: 1; }
 
@@ -335,14 +261,7 @@
     .section { padding: 72px 0; }
     .section-header { text-align: center; margin-bottom: 48px; }
 
-    .section-pill {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6);
-      font-family: var(--ff-head); font-size: 9.5px; font-weight: 600;
-      padding: 4px 13px; border-radius: 20px;
-      text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 16px;
-      background: rgba(255,255,255,0.04);
-    }
+    .section-pill { display: none; }
     .section-title {
       font-family: var(--ff-head); font-size: clamp(26px, 4vw, 38px);
       font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 12px;
@@ -365,7 +284,7 @@
       border: 1px solid var(--border);
       transition: transform .45s cubic-bezier(.175,.885,.32,1.275),
                   box-shadow .45s ease, border-color .3s ease;
-      cursor: none; position: relative; overflow: hidden;
+      cursor: pointer; position: relative; overflow: hidden;
       opacity: 0; transform: translateY(36px) scale(0.88);
     }
     .card::before {
@@ -571,7 +490,7 @@
       background: var(--surface2); border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       font-size: 16px; line-height: 1; color: var(--muted);
-      cursor: none; transition: all .2s;
+      cursor: pointer; transition: all .2s;
     }
     .lightbox-close:hover {
       background: rgba(255,255,255,0.12); color: var(--text);
@@ -650,45 +569,7 @@
     .footer-copy { font-size: 11.5px; color: var(--muted); font-weight: 300; }
     .footer-socials { display: flex; gap: 5px; }
 
-    /* ── AURORA BACKGROUND ──────────────────────────────────── */
-    .aurora-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-    .aurora-band { position: absolute; border-radius: 50%; will-change: transform; }
-    .a1 {
-      width: 75vw; height: 55vh; top: -18vh; left: -8vw;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 45%, transparent 70%);
-      filter: blur(55px); animation: auroraDrift1 20s ease-in-out infinite alternate;
-    }
-    .a2 {
-      width: 65vw; height: 60vh; bottom: -20vh; right: -8vw;
-      background: radial-gradient(ellipse at center, rgba(180,180,200,0.04) 0%, rgba(180,180,200,0.015) 45%, transparent 70%);
-      filter: blur(65px); animation: auroraDrift2 25s ease-in-out infinite alternate;
-    }
-    .a3 {
-      width: 55vw; height: 45vh; top: 25vh; left: 15vw;
-      background: radial-gradient(ellipse at center, rgba(200,200,220,0.025) 0%, transparent 70%);
-      filter: blur(70px); animation: auroraDrift3 30s ease-in-out infinite alternate;
-    }
-    .a4 {
-      width: 50vw; height: 35vh; top: 5vh; right: 5vw;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,0.02) 0%, transparent 70%);
-      filter: blur(80px); animation: auroraDrift4 22s ease-in-out infinite alternate;
-    }
-    @keyframes auroraDrift1 {
-      0%   { transform: translate(0,0) scale(1) rotate(-4deg); }
-      100% { transform: translate(7vw,4vh) scale(1.18) rotate(4deg); }
-    }
-    @keyframes auroraDrift2 {
-      0%   { transform: translate(0,0) scale(1.1) rotate(3deg); }
-      100% { transform: translate(-5vw,-5vh) scale(0.9) rotate(-4deg); }
-    }
-    @keyframes auroraDrift3 {
-      0%   { transform: translate(0,0) scale(0.9) rotate(-2deg); }
-      100% { transform: translate(-4vw,5vh) scale(1.1) rotate(5deg); }
-    }
-    @keyframes auroraDrift4 {
-      0%   { transform: translate(0,0) scale(1) rotate(2deg); }
-      100% { transform: translate(3vw,3vh) scale(1.2) rotate(-3deg); }
-    }
+    /* aurora removed */
 
     @media (max-width: 600px) {
       .container { padding: 0 20px; }
@@ -981,150 +862,19 @@
       width: 32px; height: 32px; border-radius: 50%;
       background: var(--surface2); border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px; color: var(--muted); cursor: none; transition: all .2s;
+      font-size: 16px; color: var(--muted); cursor: pointer; transition: all .2s;
     }
     .book-modal-close:hover { background: rgba(255,255,255,0.12); color: var(--text); }
     .book-modal-form { display: flex; flex-direction: column; gap: 14px; }
 
-    /* ── SIDE RAILS ─────────────────────────────────────────── */
-    .side-rail {
-      position: fixed; top: 0; bottom: 0;
-      width: calc((100vw - 1020px) / 2 - 2px);
-      pointer-events: none; z-index: 4; overflow: hidden;
-    }
-    .side-rail.left  { left: 0; }
-    .side-rail.right { right: 0; }
-    @media (max-width: 1140px) { .side-rail { display: none; } }
-
-    .scroll-track { position: absolute; right: 26px; top: 10vh; bottom: 10vh; width: 1px; background: rgba(255,255,255,0.05); }
-    .scroll-thumb {
-      position: absolute; top: 0; left: 0; width: 1px;
-      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
-      transform-origin: top center; transform: scaleY(0);
-      transition: transform .08s linear; border-radius: 1px;
-    }
-    .scroll-glow-dot {
-      position: absolute; left: 50%; transform: translateX(-50%);
-      width: 5px; height: 5px; background: #fff; border-radius: 50%;
-      box-shadow: 0 0 8px 3px rgba(255,255,255,0.4);
-      top: 0; transition: top .08s linear;
-    }
-    .section-label-wrap {
-      position: absolute; left: 50%; top: 50%;
-      transform: translate(-50%, -50%) rotate(-90deg);
-      white-space: nowrap; display: flex; align-items: center; gap: 10px;
-      transition: opacity .5s ease;
-    }
-    .section-label-text {
-      font-family: var(--ff-head); font-size: 9px; font-weight: 700;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(255,255,255,0.22); transition: color .5s ease;
-    }
-    .section-label-line { width: 28px; height: 1px; background: rgba(255,255,255,0.12); }
-    .rail-orb { position: absolute; border-radius: 50%; pointer-events: none; }
-    .orb-l1 {
-      width: 120px; height: 120px; left: 50%; top: 18%; transform: translateX(-50%);
-      background: radial-gradient(ellipse, rgba(255,255,255,0.04) 0%, transparent 70%);
-      filter: blur(18px); animation: orbFloat1 9s ease-in-out infinite alternate;
-    }
-    .orb-l2 {
-      width: 90px; height: 90px; left: 50%; top: 58%; transform: translateX(-50%);
-      background: radial-gradient(ellipse, rgba(200,210,255,0.035) 0%, transparent 70%);
-      filter: blur(14px); animation: orbFloat2 12s ease-in-out infinite alternate;
-    }
-    .orb-r1 {
-      width: 100px; height: 100px; right: 8%; top: 32%;
-      background: radial-gradient(ellipse, rgba(255,255,255,0.04) 0%, transparent 70%);
-      filter: blur(16px); animation: orbFloat2 10s ease-in-out infinite alternate;
-    }
-    .orb-r2 {
-      width: 80px; height: 80px; right: 12%; top: 72%;
-      background: radial-gradient(ellipse, rgba(210,200,255,0.03) 0%, transparent 70%);
-      filter: blur(12px); animation: orbFloat1 14s ease-in-out infinite alternate;
-    }
-    @keyframes orbFloat1 {
-      0%   { transform: translateX(-50%) translateY(0) scale(1); opacity:.6; }
-      100% { transform: translateX(-50%) translateY(-24px) scale(1.15); opacity:1; }
-    }
-    @keyframes orbFloat2 {
-      0%   { transform: translateX(-50%) translateY(0) scale(1.1); opacity:.8; }
-      100% { transform: translateX(-50%) translateY(20px) scale(0.9); opacity:.5; }
-    }
-    .rail-particle {
-      position: absolute; width: 2px; height: 2px; border-radius: 50%;
-      background: rgba(255,255,255,0.35);
-      animation: particleRise linear infinite;
-    }
-    .rail-particle.dim { background: rgba(255,255,255,0.14); width: 1.5px; height: 1.5px; }
-    @keyframes particleRise {
-      0%   { opacity: 0; }
-      8%   { opacity: 1; }
-      90%  { opacity: .6; }
-      100% { transform: translateY(-100vh) translateX(var(--dx, 0px)); opacity: 0; }
-    }
-    .rail-ticks { position: absolute; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; }
-    .side-rail.left  .rail-ticks { right: 0; }
-    .side-rail.right .rail-ticks { left: 0; }
-    .rail-tick { display: flex; align-items: center; gap: 5px; }
-    .side-rail.left  .rail-tick { flex-direction: row-reverse; }
-    .side-rail.right .rail-tick { flex-direction: row; }
-    .tick-line { height: 1px; background: rgba(255,255,255,0.09); transition: width .4s ease, background .4s ease; }
-    .tick-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.15); transition: background .4s ease, box-shadow .4s ease; flex-shrink: 0; }
-    .rail-tick.active .tick-dot { background: rgba(255,255,255,0.7); box-shadow: 0 0 6px rgba(255,255,255,0.5); }
-    .rail-tick.active .tick-line { background: rgba(255,255,255,0.25); }
-    .rail-bottom-text {
-      position: absolute; bottom: 36px; left: 50%;
-      transform: translateX(-50%) rotate(-90deg);
-      font-family: var(--ff-head); font-size: 8px; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(255,255,255,0.1); white-space: nowrap;
-    }
-    .rail-top-text {
-      position: absolute; top: 36px; left: 50%;
-      transform: translateX(-50%) rotate(-90deg);
-      font-family: var(--ff-head); font-size: 8px; font-weight: 700;
-      letter-spacing: 0.16em; color: rgba(255,255,255,0.1); white-space: nowrap;
-    }
+    /* side rails removed */
   </style>
 </head>
 <body>
 
-  <div class="aurora-bg" aria-hidden="true">
-    <div class="aurora-band a1"></div>
-    <div class="aurora-band a2"></div>
-    <div class="aurora-band a3"></div>
-    <div class="aurora-band a4"></div>
-  </div>
 
-  <div class="spotlight" id="spotlight" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="c-dot" id="cDot"></div>
-  <div class="c-ring" id="cRing"></div>
 
-  <!-- LEFT SIDE RAIL -->
-  <aside class="side-rail left" aria-hidden="true">
-    <div class="rail-orb orb-l1"></div>
-    <div class="rail-orb orb-l2"></div>
-    <div class="section-label-wrap" id="sectionLabel">
-      <div class="section-label-line"></div>
-      <div class="section-label-text" id="sectionLabelText">Portfolio</div>
-      <div class="section-label-line"></div>
-    </div>
-    <div class="rail-ticks" id="leftTicks"></div>
-    <div class="rail-top-text">©&nbsp;Auvality</div>
-    <div class="rail-bottom-text" id="railYear">2025</div>
-  </aside>
 
-  <!-- RIGHT SIDE RAIL -->
-  <aside class="side-rail right" aria-hidden="true">
-    <div class="rail-orb orb-r1"></div>
-    <div class="rail-orb orb-r2"></div>
-    <div class="scroll-track" id="scrollTrack">
-      <div class="scroll-thumb" id="scrollThumb"></div>
-      <div class="scroll-glow-dot" id="scrollGlowDot"></div>
-    </div>
-    <div class="rail-ticks" id="rightTicks"></div>
-  </aside>
 
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Work preview">
@@ -1599,87 +1349,9 @@
 
   boot();
 
-  /* ════════════════════════════════════════════════════════════
-     SPOTLIGHT
-  ════════════════════════════════════════════════════════════ */
-  const spotlight = document.getElementById('spotlight');
-  let spotX = window.innerWidth / 2, spotY = window.innerHeight / 2;
-  let animSpotX = spotX, animSpotY = spotY;
-  function updateSpotlight() {
-    animSpotX += (spotX - animSpotX) * 0.07;
-    animSpotY += (spotY - animSpotY) * 0.07;
-    spotlight.style.background =
-      `radial-gradient(480px circle at ${animSpotX}px ${animSpotY}px,
-        rgba(255,255,255,0.04) 0%,
-        rgba(255,255,255,0.015) 35%,
-        transparent 65%)`;
-    requestAnimationFrame(updateSpotlight);
-  }
-  updateSpotlight();
+  /* spotlight removed */
 
-  /* ════════════════════════════════════════════════════════════
-     CUSTOM CURSOR
-  ════════════════════════════════════════════════════════════ */
-  const dot  = document.getElementById('cDot');
-  const ring = document.getElementById('cRing');
-  dot.style.left  = '0px'; dot.style.top  = '0px';
-  ring.style.left = '0px'; ring.style.top = '0px';
-
-  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-  let rx = mx, ry = my;
-  let isFolderHover = false;
-
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    spotX = e.clientX; spotY = e.clientY;
-    dot.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
-  });
-
-  (function animRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
-    requestAnimationFrame(animRing);
-  })();
-
-  document.querySelectorAll('a, button, .card, .social-btn, .pricing-cta').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      const isFolder = el.classList.contains('card');
-      if (isFolder) {
-        ring.classList.add('folder-hover');
-        dot.classList.add('folder-hover');
-        isFolderHover = true;
-      } else {
-        ring.classList.add('hovered');
-      }
-    });
-    el.addEventListener('mouseleave', () => {
-      ring.classList.remove('hovered', 'folder-hover');
-      dot.classList.remove('folder-hover');
-      isFolderHover = false;
-    });
-  });
-
-  /* ── Card mouse-tracking border glow ── */
-  document.addEventListener('mousemove', e => {
-    document.querySelectorAll('.card').forEach(card => {
-      const r = card.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width  * 100).toFixed(1) + '%';
-      const y = ((e.clientY - r.top)  / r.height * 100).toFixed(1) + '%';
-      card.querySelector('.border-glow').style.setProperty('--mouse-x', x);
-      card.querySelector('.border-glow').style.setProperty('--mouse-y', y);
-    });
-    document.querySelectorAll('.pricing-card, .about-bio, .stat-box, .process-step, .booking-card, .tcard').forEach(el => {
-      const r = el.getBoundingClientRect();
-      const glow = el.querySelector('.card-border-glow');
-      if (!glow) return;
-      glow.style.setProperty('--mx', ((e.clientX - r.left) / r.width  * 100).toFixed(1) + '%');
-      glow.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100).toFixed(1) + '%');
-    });
-  });
-
-  document.addEventListener('mousedown', () => { dot.style.opacity = '0.5'; });
-  document.addEventListener('mouseup',   () => { dot.style.opacity = '1'; });
+  /* custom cursor removed */
 
   /* ════════════════════════════════════════════════════════════
      SCROLL REVEAL
@@ -1734,8 +1406,6 @@
   document.getElementById('serviceGrid').addEventListener('click', e => {
     const card = e.target.closest('.card');
     if (!card) return;
-    ring.classList.remove('hovered', 'folder-hover');
-    dot.classList.remove('folder-hover');
     openLightbox(card.dataset.label, JSON.parse(card.dataset.imgs));
   });
 
@@ -1743,93 +1413,7 @@
   lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeBookModal(); } });
 
-  /* ════════════════════════════════════════════════════════════
-     SIDE RAIL LOGIC
-  ════════════════════════════════════════════════════════════ */
-  document.getElementById('railYear').textContent = new Date().getFullYear();
-
-  const TICK_COUNT = 14;
-  ['leftTicks','rightTicks'].forEach(id => {
-    const container = document.getElementById(id);
-    for (let i = 0; i < TICK_COUNT; i++) {
-      const tick = document.createElement('div');
-      tick.className = 'rail-tick';
-      const d2   = document.createElement('div'); d2.className = 'tick-dot';
-      const line = document.createElement('div'); line.className = 'tick-line';
-      line.style.width = (i % 3 === 0) ? '14px' : (i % 3 === 1) ? '8px' : '5px';
-      tick.appendChild(d2); tick.appendChild(line);
-      container.appendChild(tick);
-    }
-  });
-
-  function spawnParticle(rail) {
-    const p = document.createElement('div');
-    p.className = 'rail-particle' + (Math.random() > 0.5 ? ' dim' : '');
-    const railW = rail.offsetWidth || 120;
-    const dur   = 6 + Math.random() * 10;
-    const dx    = (Math.random() - 0.5) * 20;
-    p.style.left = (Math.random() * railW) + 'px';
-    p.style.bottom = '-4px';
-    p.style.setProperty('--dx', dx + 'px');
-    p.style.animationDuration = dur + 's';
-    p.style.animationDelay   = (Math.random() * dur) + 's';
-    rail.appendChild(p);
-    setTimeout(() => p.remove(), (dur + dur) * 1000);
-  }
-
-  const leftRail  = document.querySelector('.side-rail.left');
-  const rightRail = document.querySelector('.side-rail.right');
-  for (let i = 0; i < 8; i++) { spawnParticle(leftRail); spawnParticle(rightRail); }
-  setInterval(() => {
-    if (leftRail.offsetWidth > 0) { spawnParticle(leftRail); spawnParticle(rightRail); }
-  }, 1800);
-
-  const scrollThumb   = document.getElementById('scrollThumb');
-  const scrollGlowDot = document.getElementById('scrollGlowDot');
-  const leftTickEls   = document.querySelectorAll('#leftTicks  .rail-tick');
-  const rightTickEls  = document.querySelectorAll('#rightTicks .rail-tick');
-  const sectionLabelText = document.getElementById('sectionLabelText');
-
-  const sectionNames = {
-    'services':     'Services',
-    'projects':     'Projects',
-    'about':        'About',
-    'testimonials': 'Reviews',
-    'pricing':      'Pricing',
-    'booking':      'Booking',
-  };
-  const sectionEls = Object.keys(sectionNames).map(id => document.getElementById(id)).filter(Boolean);
-  let currentSection = 'Portfolio';
-
-  function onScroll() {
-    const scrollTop = window.scrollY;
-    const docH      = document.documentElement.scrollHeight - window.innerHeight;
-    const progress  = docH > 0 ? scrollTop / docH : 0;
-
-    scrollThumb.style.transform = `scaleY(${progress})`;
-    const trackH = document.getElementById('scrollTrack').offsetHeight;
-    scrollGlowDot.style.top = (progress * trackH) + 'px';
-
-    const tickIdx = Math.round(progress * (TICK_COUNT - 1));
-    leftTickEls.forEach((t, i)  => t.classList.toggle('active', i === tickIdx));
-    rightTickEls.forEach((t, i) => t.classList.toggle('active', i === tickIdx));
-
-    let active = 'Portfolio';
-    const mid = scrollTop + window.innerHeight * 0.45;
-    sectionEls.forEach(el => {
-      if (el && el.offsetTop <= mid) active = sectionNames[el.id] || active;
-    });
-    if (active !== currentSection) {
-      currentSection = active;
-      sectionLabelText.style.opacity = '0';
-      setTimeout(() => {
-        sectionLabelText.textContent = active;
-        sectionLabelText.style.opacity = '1';
-      }, 280);
-    }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  /* side rails removed */
 
   /* ════════════════════════════════════════════════════════════
      BOOKING FORM
@@ -1887,10 +1471,7 @@
   bookModalClose.addEventListener('click', closeBookModal);
   bookModal.addEventListener('click', e => { if (e.target === bookModal) closeBookModal(); });
 
-  document.querySelectorAll('.pricing-cta, .booking-submit, .book-modal-close, .form-input, .form-select, .form-textarea').forEach(el => {
-    el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
-    el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
-  });
+
   </script>
 
 </body>
