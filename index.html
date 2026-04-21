@@ -489,7 +489,7 @@
     }
 
     /* single image display */
-    #lightboxImgWrap { padding: 20px 28px 0; }
+    #lightboxImgWrap { padding: 20px 28px 22px; }
     .lightbox-img-main {
       width: 100%;
       height: clamp(260px, 50vh, 480px);
@@ -507,24 +507,35 @@
     /* navigation row */
     .lightbox-nav {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 28px 26px; gap: 16px;
+      padding: 0 0 0; gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 20px;
+    }
+    .lb-nav-side {
+      display: flex; align-items: center;
+    }
+    .lb-nav-divider {
+      width: 1px; height: 56px;
+      background: rgba(255,255,255,0.08);
+      flex-shrink: 0;
     }
     .lb-nav-btn {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.14);
+      width: 56px; height: 56px; border-radius: 0;
+      background: transparent;
+      border: none;
       display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.7); font-size: 16px; cursor: pointer;
-      transition: all .25s cubic-bezier(.175,.885,.32,1.275);
+      color: rgba(255,255,255,0.4); cursor: pointer;
+      transition: all .22s ease;
       flex-shrink: 0;
     }
     .lb-nav-btn:hover:not(:disabled) {
-      background: rgba(255,255,255,0.16);
-      border-color: rgba(255,255,255,0.35); color: #fff;
-      transform: scale(1.12);
-      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
     }
-    .lb-nav-btn:disabled { opacity: 0.2; cursor: default; }
+    .lb-nav-btn:disabled { opacity: 0.18; cursor: default; }
+    .lb-nav-center {
+      flex: 1; display: flex; align-items: center; justify-content: center; height: 56px;
+    }
     .lb-counter {
       font-family: var(--ff-head); font-size: 10px; font-weight: 700;
       letter-spacing: 0.14em; color: rgba(255,255,255,0.35);
@@ -967,9 +978,17 @@
         <div class="lightbox-img-main" id="lightboxMainImg"></div>
       </div>
       <div class="lightbox-nav">
-        <button class="lb-nav-btn" id="lbPrev" aria-label="Previous">←</button>
-        <div class="lb-dots" id="lbDots"></div>
-        <button class="lb-nav-btn" id="lbNext" aria-label="Next">→</button>
+        <button class="lb-nav-btn" id="lbPrev" aria-label="Previous">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="lb-nav-divider"></div>
+        <div class="lb-nav-center">
+          <div class="lb-dots" id="lbDots"></div>
+        </div>
+        <div class="lb-nav-divider"></div>
+        <button class="lb-nav-btn" id="lbNext" aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -1389,16 +1408,33 @@
     progressBar.style.width = Math.min(pct, 100) + '%';
   }, { passive: true });
 
-  // Card 3D tilt on mouse move
+  // Card 3D tilt on mouse move — debounced leave to stop edge-flicker bug
   document.querySelectorAll('.card').forEach(card => {
+    let leaveTimer = null;
+    let isHovered = false;
+
+    card.addEventListener('mouseenter', () => {
+      isHovered = true;
+      clearTimeout(leaveTimer);
+    });
+
     card.addEventListener('mousemove', e => {
+      clearTimeout(leaveTimer);
+      isHovered = true;
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width  - 0.5;
       const y = (e.clientY - r.top)  / r.height - 0.5;
       card.style.transform = `translateY(-14px) scale(1.02) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
     });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
+
+    card.addEventListener('mouseleave', e => {
+      // Only reset if the mouse truly left (not just brushed a child element's boundary)
+      leaveTimer = setTimeout(() => {
+        if (isHovered) {
+          isHovered = false;
+          card.style.transform = '';
+        }
+      }, 60);
     });
   });
 
