@@ -52,17 +52,6 @@
       min-height: 100vh;
       cursor: auto;
     }
-    /* Grain overlay */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,<svg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23g)' opacity='0.045'/></svg>");
-      background-size: 200px 200px;
-      opacity: 1;
-    }
 
     a { text-decoration: none; color: inherit; cursor: pointer; }
     ul { list-style: none; }
@@ -78,68 +67,10 @@
       pointer-events: none;
     }
 
-    /* ── BACKGROUND DECORATIVE IMAGES ─────────────────────────── */
-    #bgDecor {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .bg-logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -52%);
-      width: 55%;
-      max-width: 560px;
-      min-width: 280px;
-      opacity: 0.055;
-      filter: blur(0.5px) grayscale(1) contrast(1.1);
-      mix-blend-mode: screen;
-      transition: opacity 1s ease;
-      user-select: none;
-    }
-    .bg-sakura-left {
-      position: absolute;
-      top: -6%;
-      left: -8%;
-      width: 52%;
-      max-width: 520px;
-      opacity: 0.18;
-      filter: grayscale(1) contrast(1.05) blur(0.3px);
-      mix-blend-mode: screen;
-      transform: rotate(-8deg) scaleX(-1);
-      transform-origin: top left;
-      user-select: none;
-    }
-    .bg-sakura-right {
-      position: absolute;
-      bottom: 5%;
-      right: -6%;
-      width: 48%;
-      max-width: 480px;
-      opacity: 0.14;
-      filter: grayscale(1) contrast(1.1) blur(0.4px);
-      mix-blend-mode: screen;
-      transform: rotate(6deg);
-      transform-origin: bottom right;
-      user-select: none;
-    }
-    /* Subtle vignette over decor */
-    #bgDecor::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 70% at 50% 50%, transparent 30%, rgba(6,6,8,0.6) 100%);
-      pointer-events: none;
-    }
-
 
 
     /* ── LAYOUT ─────────────────────────────────────────────── */
-    .container { max-width: 1020px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 4; }
+    .container { max-width: 1020px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 3; }
 
     /* ── SCROLL REVEAL ──────────────────────────────────────── */
     .reveal {
@@ -235,9 +166,7 @@
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 90% at 50% 50%, rgba(0,0,0,0.1) 0%, transparent 50%),
-        radial-gradient(ellipse 100% 100% at 50% 50%, transparent 20%, rgba(6,6,8,0.85) 100%);
+      background: radial-gradient(ellipse 70% 80% at 50% 50%, transparent 30%, var(--bg) 100%);
       pointer-events: none; z-index: 0;
     }
     .hero > * { position: relative; z-index: 1; }
@@ -963,16 +892,6 @@
   <!-- ── BACKGROUND ─────────────────────────────────────────── -->
   <canvas id="bgCanvas"></canvas>
 
-  <!-- ── BACKGROUND DECORATIVE IMAGES ──────────────────────────── -->
-  <div id="bgDecor">
-    <!-- Logo — replace src with your transparent PNG -->
-    <img class="bg-logo" src="./assets/logo.png" alt="" onerror="this.style.display='none'">
-    <!-- Sakura branch left — Image 2 (close-up branch) -->
-    <img class="bg-sakura-left" src="./assets/sakura-left.png" alt="" onerror="this.style.display='none'">
-    <!-- Sakura branch right — Image 3 (wide branches) -->
-    <img class="bg-sakura-right" src="./assets/sakura-right.png" alt="" onerror="this.style.display='none'">
-  </div>
-
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Work preview">
     <div class="lightbox-inner" id="lightboxInner">
@@ -1337,11 +1256,13 @@ vec3 getNormal(vec3 pos){vec3 cp=getCurrentPos(pos);vec3 nx=getCurrentPos(pos+ve
         uSpeed:         { value: 2 },
         envMapIntensity:{ value: 10 },
         uNoiseIntensity:{ value: 1.75 },
-        uScale:         { value: 0.01 }
+        uScale:         { value: 0.2 }
       }
     });
 
-    scene.add(new THREE.Mesh(createBeamsGeometry(37, 6.7, 15, 100), beamMaterial));
+    const beamMesh = new THREE.Mesh(createBeamsGeometry(12, 2, 24, 100), beamMaterial);
+    beamMesh.rotation.z = THREE.MathUtils.degToRad(30);
+    scene.add(beamMesh);
 
     let lastT = 0;
     function animate(ts) {
