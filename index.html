@@ -908,7 +908,7 @@
           <h1 id="headerName"></h1>
           <p id="headerRole"></p>
         </div>
-        <img src="pictures/logo.png" alt="Secondary Logo" style="height:36px;width:auto;opacity:0.85;filter:brightness(0) invert(1);margin-left:4px">
+
         <div class="hdivider"></div>
         <div class="status-badge">
           <div class="status-dot"></div>
@@ -920,17 +920,24 @@
 
     <!-- HERO -->
     <section class="hero">
-            <!-- HERO LOGO -->
-      <div style="display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:32px;animation:fadeUp 1s 0.1s cubic-bezier(.16,1,.3,1) both">
-        <!-- Branch Left -->
-        <img src="pictures/hero.png" alt="Branch left" style="width:clamp(80px,12vw,160px);height:auto;display:block;transform:scaleX(-1);opacity:0.85;flex-shrink:0;">
-        <!-- Logo -->
-        <div class="hero-logo">
-          <img src="pictures/logo.png" alt="Auvality Logo" style="width:clamp(260px,40vw,420px);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 0 40px rgba(255,255,255,0.12))">
-        </div>
-        <!-- Branch Right -->
-        <img src="pictures/hero.png" alt="Branch right" style="width:clamp(80px,12vw,160px);height:auto;display:block;opacity:0.85;flex-shrink:0;">
+
+      <!-- Branch Left — pinned to far left edge of viewport -->
+      <img src="pictures/branch1.png" alt="Branch left"
+           style="position:fixed;left:0;top:50%;transform:translateY(-50%);
+                  width:clamp(90px,10vw,180px);height:auto;
+                  pointer-events:none;z-index:2;opacity:0.9;">
+
+      <!-- Branch Right — pinned to far right edge of viewport -->
+      <img src="pictures/branch2.png" alt="Branch right"
+           style="position:fixed;right:0;top:50%;transform:translateY(-50%);
+                  width:clamp(90px,10vw,180px);height:auto;
+                  pointer-events:none;z-index:2;opacity:0.9;">
+
+      <!-- HERO LOGO -->
+      <div class="hero-logo" style="margin-bottom:32px;animation:fadeUp 1s 0.1s cubic-bezier(.16,1,.3,1) both">
+        <img src="pictures/hero.png" alt="Auvality Logo" style="width:clamp(260px,40vw,420px);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 0 40px rgba(255,255,255,0.12))">
       </div>
+
       <h1 class="hero-title" id="heroTitle"></h1>
       <p class="hero-subtitle" id="heroSubtitle"></p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
