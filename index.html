@@ -108,11 +108,11 @@
     .status-dot {
       width: 6px; height: 6px; background: #3fde84; border-radius: 50%;
       animation: pulse 2.5s ease infinite;
-      box-shadow: 0 0 6px rgba(63,222,132,0.6);
+      box-shadow: 0 0 10px rgba(63,222,132,0.9), 0 0 20px rgba(63,222,132,0.4);
     }
     @keyframes pulse {
-      0%,100% { box-shadow: 0 0 6px rgba(63,222,132,0.6), 0 0 0 0 rgba(63,222,132,0.4); }
-      60%      { box-shadow: 0 0 6px rgba(63,222,132,0.6), 0 0 0 6px rgba(63,222,132,0); }
+      0%,100% { box-shadow: 0 0 10px rgba(63,222,132,0.9), 0 0 20px rgba(63,222,132,0.4), 0 0 0 0 rgba(63,222,132,0.4); }
+      60%      { box-shadow: 0 0 10px rgba(63,222,132,0.9), 0 0 20px rgba(63,222,132,0.4), 0 0 0 7px rgba(63,222,132,0); }
     }
 
     /* ── SOCIAL BUTTONS ────────────────────────────────────── */
@@ -163,6 +163,29 @@
       to   { opacity: 1; transform: none; }
     }
 
+    @keyframes heroFloat {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    /* Ambient hero background glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 10%; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.02) 40%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: ambientPulse 5s ease-in-out infinite;
+    }
+    @keyframes ambientPulse {
+      0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+      50%       { opacity: 1;   transform: translateX(-50%) scale(1.08); }
+    }
+
         .hero-title {
       font-family: var(--ff-serif);
       font-size: clamp(60px, 10vw, 90px);
@@ -188,16 +211,20 @@
     /* ── CTA BUTTON ─────────────────────────────────────────── */
     .cta-button {
       background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.22);
       color: var(--text);
       padding: 14px 38px; border-radius: 40px;
       font-family: var(--ff-head); font-size: 10.5px; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase;
       transition: all .4s cubic-bezier(.175,.885,.32,1.275);
-      box-shadow: 0 0 0 0 rgba(255,255,255,0), inset 0 1px 0 rgba(255,255,255,0.1);
-      animation: fadeUp .9s .55s cubic-bezier(.16,1,.3,1) both;
+      box-shadow: 0 0 18px rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.1);
+      animation: fadeUp .9s .55s cubic-bezier(.16,1,.3,1) both, ctaGlow 4s 1.5s ease-in-out infinite;
       position: relative; overflow: hidden; display: inline-block;
       backdrop-filter: blur(8px);
+    }
+    @keyframes ctaGlow {
+      0%, 100% { box-shadow: 0 0 18px rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.1); }
+      50%       { box-shadow: 0 0 32px rgba(255,255,255,0.18), 0 0 0 1px rgba(255,255,255,0.12), inset 0 1px 0 rgba(255,255,255,0.15); }
     }
     .cta-button::after {
       content: ''; position: absolute; top: 0; left: -130%;
@@ -209,10 +236,11 @@
     @keyframes ctaGlint { 0% { left:-130%; } 100% { left:180%; } }
     .cta-button:hover {
       transform: translateY(-5px) scale(1.03);
-      background: rgba(255,255,255,0.12);
-      border-color: rgba(255,255,255,0.35);
-      box-shadow: 0 0 30px rgba(255,255,255,0.1), 0 0 0 1px rgba(255,255,255,0.2),
-                  0 16px 40px rgba(0,0,0,0.4);
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.45);
+      box-shadow: 0 0 50px rgba(255,255,255,0.22), 0 0 100px rgba(255,255,255,0.08),
+                  0 0 0 1px rgba(255,255,255,0.28), 0 16px 40px rgba(0,0,0,0.4);
+      animation: none;
     }
 
     /* ── DIVIDER ────────────────────────────────────────────── */
@@ -329,11 +357,11 @@
     }
     .card:hover {
       transform: translateY(-14px) scale(1.02);
-      border-color: rgba(255,255,255,0.26);
+      border-color: rgba(255,255,255,0.32);
       box-shadow:
-        0 0 0 1px rgba(255,255,255,0.2), 0 0 22px rgba(255,255,255,0.1),
-        0 0 50px rgba(255,255,255,0.05), 0 32px 64px rgba(0,0,0,0.6),
-        0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+        0 0 0 1px rgba(255,255,255,0.24), 0 0 30px rgba(255,255,255,0.14),
+        0 0 80px rgba(255,255,255,0.06), 0 32px 64px rgba(0,0,0,0.6),
+        0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
     }
     .card:hover::before { box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18); }
     .card:hover::after  { opacity: 1; bottom: -20px; }
@@ -893,12 +921,12 @@
     /* ── SAKURA BRANCHES ────────────────────────────────────── */
     .sakura-branch {
       position: fixed; top: 0; z-index: 2; pointer-events: none;
-      width: clamp(180px, 18vw, 300px); opacity: 0.55;
+      width: clamp(180px, 18vw, 300px); opacity: 0.72;
       mix-blend-mode: screen;
     }
     .sakura-left  { left: 0; top: 0; transform: scaleX(-1); }
     .sakura-right { right: 0; top: 0; }
-    @media (max-width: 900px) { .sakura-branch { opacity: 0.3; width: 140px; } }
+    @media (max-width: 900px) { .sakura-branch { opacity: 0.4; width: 140px; } }
     @media (max-width: 600px) { .sakura-branch { display: none; } }
 
     /* ── PAGE BORDER LINES ───────────────────────────────────── */
@@ -979,7 +1007,7 @@
   <div class="page-border page-border-right"></div>
 
   <!-- SAKURA BRANCHES -->
-  <img class="sakura-branch sakura-left"  src="pictures/branch2.png" alt="">
+  <img class="sakura-branch sakura-left"  src="pictures/branch1.png" alt="">
   <img class="sakura-branch sakura-right" src="pictures/branch1.png" alt="">
 
 
@@ -1035,8 +1063,8 @@
     <!-- HERO -->
     <section class="hero">
             <!-- HERO LOGO -->
-      <div class="hero-logo" style="margin-bottom:32px;animation:fadeUp 1s 0.1s cubic-bezier(.16,1,.3,1) both">
-        <img src="pictures/hero.png" alt="Auvality Logo" style="width:clamp(260px,40vw,420px);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 0 40px rgba(255,255,255,0.12))">
+      <div class="hero-logo" style="margin-bottom:32px;animation:fadeUp 1s 0.1s cubic-bezier(.16,1,.3,1) both, heroFloat 6s 1.1s ease-in-out infinite">
+        <img src="pictures/hero.png" alt="Auvality Logo" style="width:clamp(260px,40vw,420px);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 0 60px rgba(255,255,255,0.28)) drop-shadow(0 0 120px rgba(255,255,255,0.12)) drop-shadow(0 0 20px rgba(255,255,255,0.35))">
       </div>
       <h1 class="hero-title" id="heroTitle"></h1>
       <p class="hero-subtitle" id="heroSubtitle"></p>
@@ -1424,6 +1452,11 @@
   window.addEventListener('scroll', () => {
     const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
     progressBar.style.width = Math.min(pct, 100) + '%';
+
+    // Parallax drift on sakura branches
+    const sy = window.scrollY * 0.13;
+    document.querySelector('.sakura-left').style.transform  = `scaleX(-1) translateY(${sy}px)`;
+    document.querySelector('.sakura-right').style.transform = `translateY(${sy}px)`;
   }, { passive: true });
 
   // Card 3D tilt on mouse move — debounced leave to stop edge-flicker bug
