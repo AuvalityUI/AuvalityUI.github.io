@@ -8,6 +8,8 @@
  *
  * IMAGE NAMING CONVENTION:
  *   avatar.png          — Header / profile photo (38×38 displayed, any square PNG works)
+ *   hero.png            — Hero section logo / main image
+ *   logo.png            — Subtle background watermark (white, no background)
  *   picture1.png        — Modern UI/UX card, pop-out image left    (card 1, slot 1)
  *   picture2.png        — Modern UI/UX card, pop-out image right   (card 1, slot 2)
  *   picture3.png        — Modern UI/UX card, pop-out image centre  (card 1, slot 3)
@@ -310,6 +312,30 @@ const SITE_DATA = {
       "Premium – $349",
       "Custom / Let's discuss",
     ],
+  },
+
+  /* ─────────────────────────────────────────────────────────────
+     COMMUNITY / DISCORD SECTION  (#community)
+  ───────────────────────────────────────────────────────────── */
+  community: {
+    title:       "Placeholder",        // Section heading
+    desc:        "Placeholder",        // Section sub-description
+
+    badgeText:   "Discord Server",     // Small pill badge label above the info title
+    infoTitle:   "Placeholder",        // Bold heading in the left column
+    infoDesc:    "Placeholder",        // Paragraph text in the left column
+    joinBtnText: "Join Server",        // Text on the join button
+
+    /** Paste your discord.gg/... invite URL here */
+    inviteLink:  "YOUR_DISCORD_INVITE_LINK",
+
+    /**
+     * Your Discord server's numeric ID — used for the embedded widget.
+     * How to find it: enable Developer Mode in Discord (Settings → Advanced),
+     * then right-click your server icon → Copy Server ID.
+     * Leave as 'YOUR_SERVER_ID' and the widget will be hidden until set.
+     */
+    serverId: "YOUR_SERVER_ID",
   },
 
   /* ─────────────────────────────────────────────────────────────
