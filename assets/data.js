@@ -33,52 +33,30 @@
  */
 
 const SITE_DATA = {
-
-  /* ─────────────────────────────────────────────────────────────
-     HEADER
-  ───────────────────────────────────────────────────────────── */
   header: {
-    name:       "Auvality",                    // Shown next to the avatar and in the <title>
-    role:       "Game UI/UX & Logo Designer",  // Sub-line under the name
-    statusText: "Available · New Prices",       // Green-dot status badge text
-
-    /** Avatar image — place file at /pictures/avatar.png */
+    name:       "Auvality",                    
+    role:       "Game UI/UX & Logo Designer",  
+    statusText: "Available · New Prices",       
     avatar: "./pictures/avatar.png",
 
     socials: {
-      x:         "#",   // URL for X / Twitter button
-      instagram: "#",   // URL for Instagram button
-      discord:   "#",   // URL for Discord button
-      linkedin:  "#",   // URL for LinkedIn button
+      x:         "#",  
+      instagram: "#",   
+      discord:   "#",   
+      linkedin:  "#",   
     },
   },
-
-  /* ─────────────────────────────────────────────────────────────
-     HERO SECTION
-  ───────────────────────────────────────────────────────────── */
   hero: {
-    title:    "AUVALITY",        // Large metallic heading
-    subtitle: "Game UI Designer", // Line below the title
-    ctaLeft:  "View Services",   // Left CTA button text (links to #services)
-    ctaRight: "Book a Slot",     // Right CTA button text (links to #booking)
-    footerNote: "",              // Small muted text below buttons — leave empty to hide
+    title:    "AUVALITY",     
+    subtitle: "Game UI Designer", 
+    ctaLeft:  "View Services",   
+    ctaRight: "Book a Slot",     
+    footerNote: "",              
   },
-
-  /* ─────────────────────────────────────────────────────────────
-     SERVICES SECTION  (#services)
-  ───────────────────────────────────────────────────────────── */
   services: {
     pill:  "Services",
-    title: "What I Do",           // Section heading
+    title: "What I Do",          
     desc:  "Placeholder",
-
-    /**
-     * Each card has:
-     *   label  — shown as the card title and as the lightbox heading
-     *   desc   — short sub-line on the card
-     *   images — exactly 3 paths; order: [left pop-out, right pop-out, centre pop-out]
-     *            These same 3 images are also shown in the lightbox grid.
-     */
     cards: [
       {
         label:  "Placeholder",
@@ -136,27 +114,17 @@ const SITE_DATA = {
       },
     ],
   },
-
-  /* ─────────────────────────────────────────────────────────────
-     PROJECTS SECTION  (#projects)
-  ───────────────────────────────────────────────────────────── */
   projects: {
     pill:  "Projects",
     title: "Selected Work",
     desc:  "Shipped projects.",
     comingSoonLabel: "Projects Coming Soon",
   },
-
-  /* ─────────────────────────────────────────────────────────────
-     ABOUT SECTION  (#about)
-  ───────────────────────────────────────────────────────────── */
   about: {
     pill:  "About",
     title: "Who I Am",
     desc:  "A bit about the designer behind the work.",
-
     bioLabel: "Background",
-
     bio: [
       "Placeholder",
       "Placeholder",
