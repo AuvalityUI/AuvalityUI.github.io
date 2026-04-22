@@ -880,6 +880,61 @@
     .success-title { font-family: var(--ff-head); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
     .success-msg { font-size: 12.5px; color: var(--muted); font-weight: 300; }
 
+    /* ── DISCORD WIDGET SECTION ──────────────────────────────── */
+    .discord-wrap {
+      max-width: 860px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 28px; align-items: center;
+    }
+    @media (max-width: 680px) { .discord-wrap { grid-template-columns: 1fr; } }
+    .discord-widget-card {
+      background: var(--surface); border-radius: var(--r-card);
+      border: 1px solid var(--border); overflow: hidden;
+      position: relative;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+    }
+    .discord-widget-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(88,101,242,0.5), transparent);
+      z-index: 1;
+    }
+    .discord-widget-card iframe {
+      display: block; width: 100%; height: 380px;
+      border: none; border-radius: var(--r-card);
+    }
+    .discord-info { padding: 8px 0; }
+    .discord-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--ff-head); font-size: 9px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(88,101,242,0.9);
+      background: rgba(88,101,242,0.1); border: 1px solid rgba(88,101,242,0.25);
+      border-radius: 20px; padding: 5px 13px; margin-bottom: 20px;
+    }
+    .discord-badge svg { width: 13px; height: 13px; fill: currentColor; }
+    .discord-info-title {
+      font-family: var(--ff-head); font-size: clamp(22px, 3.5vw, 30px);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 14px;
+    }
+    .discord-info-desc { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.8; margin-bottom: 28px; }
+    .discord-join-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px; border-radius: 12px;
+      font-family: var(--ff-head); font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      background: rgba(88,101,242,0.15); border: 1px solid rgba(88,101,242,0.35);
+      color: rgba(180,185,255,0.95); cursor: pointer;
+      transition: all .3s cubic-bezier(.175,.885,.32,1.275);
+      text-decoration: none;
+    }
+    .discord-join-btn:hover {
+      background: rgba(88,101,242,0.28); border-color: rgba(88,101,242,0.6);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(88,101,242,0.2);
+      color: #fff;
+    }
+    .discord-join-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
     /* ── BOOKING MODAL ──────────────────────────────────────── */
     .book-modal {
       position: fixed; inset: 0; z-index: 25000;
@@ -940,6 +995,21 @@
     .page-border-right { right: max(0px, calc(50% - 510px)); }
     @media (max-width: 1020px) { .page-border { display: none; } }
 
+    /* ── BACKGROUND LOGO WATERMARK ──────────────────────────── */
+    .bg-logo-watermark {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: url('pictures/logo.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: clamp(320px, 45vw, 560px);
+      mix-blend-mode: screen;
+      opacity: 0.038;
+      will-change: opacity;
+    }
+
     /* ── CURSOR SPOTLIGHT ────────────────────────────────────── */
     .cursor-spotlight { display: none; }
 
@@ -997,6 +1067,7 @@
 </head>
 <body>
   <div id="scrollProgress"></div>
+  <div class="bg-logo-watermark" aria-hidden="true"></div>
   <div class="cursor-spotlight" id="cursorSpotlight"></div>
   <div class="page-border page-border-left"></div>
   <div class="page-border page-border-right"></div>
@@ -1207,6 +1278,42 @@
         </div>
       </div>
     </section>
+
+    <div class="section-divider"></div>
+
+    <!-- DISCORD COMMUNITY -->
+    <section class="section" id="community">
+      <div class="section-header reveal">
+        <h2 class="section-title">Join the Community</h2>
+        <p class="section-desc">Hang out, share feedback, get updates, and connect with other clients &amp; fans on Discord.</p>
+      </div>
+      <div class="discord-wrap reveal">
+        <div class="discord-info">
+          <div class="discord-badge">
+            <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+            Discord Server
+          </div>
+          <div class="discord-info-title">Connect &amp; Collaborate</div>
+          <p class="discord-info-desc">Get WIP sneak peeks, vote on upcoming styles, ask questions, and stay in the loop — all in one place.</p>
+          <a class="discord-join-btn" href="YOUR_DISCORD_INVITE_LINK" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+            Join Server
+          </a>
+        </div>
+        <div class="discord-widget-card">
+          <!-- Replace YOUR_SERVER_ID with your actual Discord server ID -->
+          <iframe
+            src="https://discord.com/widget?id=YOUR_SERVER_ID&theme=dark"
+            allowtransparency="true"
+            frameborder="0"
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+            title="Discord Server Widget"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
 
     <!-- BOOKING MODAL -->
     <div class="book-modal" id="bookModal" role="dialog" aria-modal="true">
@@ -1635,12 +1742,63 @@
   });
 
   /* ════════════════════════════════════════════════════════════
+     BOOKING CONFIG — paste your Discord webhook URL below
+  ════════════════════════════════════════════════════════════ */
+  const BOOKING_CONFIG = {
+    // Option A: Discord Webhook (recommended)
+    // Create one in your Discord server: Server Settings → Integrations → Webhooks
+    discordWebhook: 'YOUR_DISCORD_WEBHOOK_URL',
+
+    // Option B: Fallback email (used if webhook is not set)
+    fallbackEmail: 'your@email.com',
+  };
+
+  /* ════════════════════════════════════════════════════════════
      BOOKING FORM
   ════════════════════════════════════════════════════════════ */
-  function submitBooking() {
-    const name    = document.getElementById('bookName').value.trim();
-    const contact = document.getElementById('bookContact').value.trim();
-    const service = document.getElementById('bookService').value;
+  function setSubmitLoading(btn, loading) {
+    btn.disabled = loading;
+    btn.textContent = loading ? 'Sending…' : 'Send Request →';
+    btn.style.opacity = loading ? '0.6' : '';
+  }
+
+  async function sendToDiscord(payload) {
+    if (!BOOKING_CONFIG.discordWebhook || BOOKING_CONFIG.discordWebhook === 'YOUR_DISCORD_WEBHOOK_URL') {
+      return false; // webhook not configured, use fallback
+    }
+    try {
+      const res = await fetch(BOOKING_CONFIG.discordWebhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: 'Auvality Bookings',
+          avatar_url: 'https://cdn.discordapp.com/embed/avatars/0.png',
+          embeds: [{
+            title: '📋 New Booking Request',
+            color: 0x5865F2,
+            fields: payload.map(([name, value]) => ({ name, value: value || '—', inline: true })),
+            timestamp: new Date().toISOString(),
+            footer: { text: 'Auvality Booking System' }
+          }]
+        })
+      });
+      return res.ok;
+    } catch { return false; }
+  }
+
+  function fallbackEmail(subject, body) {
+    const mailto = `mailto:${BOOKING_CONFIG.fallbackEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  }
+
+  async function submitBooking() {
+    const name     = document.getElementById('bookName').value.trim();
+    const contact  = document.getElementById('bookContact').value.trim();
+    const service  = document.getElementById('bookService').value;
+    const budget   = document.getElementById('bookBudget').value;
+    const desc     = document.getElementById('bookDesc').value.trim();
+    const timeline = document.getElementById('bookTimeline').value.trim();
+
     if (!name || !contact || !service) {
       document.querySelectorAll('#bookingForm .form-input, #bookingForm .form-select').forEach(el => {
         if (!el.value.trim()) {
@@ -1650,6 +1808,28 @@
       });
       return;
     }
+
+    const submitBtn = document.querySelector('#bookingForm .booking-submit');
+    setSubmitLoading(submitBtn, true);
+
+    const payload = [
+      ['👤 Name', name],
+      ['📬 Contact', contact],
+      ['🎨 Service', service],
+      ['💰 Budget', budget || 'Not specified'],
+      ['⏱️ Timeline', timeline || 'Not specified'],
+      ['📝 Description', desc || 'Not specified'],
+    ];
+
+    const sent = await sendToDiscord(payload);
+
+    if (!sent) {
+      // Fallback: open mailto
+      const body = payload.map(([k, v]) => `${k}: ${v}`).join('\n');
+      fallbackEmail('New Booking Request — Auvality', body);
+    }
+
+    setSubmitLoading(submitBtn, false);
     document.getElementById('bookingFormWrap').style.display = 'none';
     document.getElementById('bookingSuccess').classList.add('show');
   }
@@ -1662,6 +1842,8 @@
 
   function openBookModal(plan) {
     document.getElementById('modalPlanLabel').textContent = plan + ' plan selected';
+    // Pre-fill the plan in the main booking form service select if possible
+    bookModal.dataset.plan = plan;
     bookModal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -1669,9 +1851,12 @@
     bookModal.classList.remove('open');
     document.body.style.overflow = '';
   }
-  function submitModal() {
+  async function submitModal() {
     const name    = document.getElementById('mBookName').value.trim();
     const contact = document.getElementById('mBookContact').value.trim();
+    const notes   = document.getElementById('mBookNotes').value.trim();
+    const plan    = bookModal.dataset.plan || '';
+
     if (!name || !contact) {
       [document.getElementById('mBookName'), document.getElementById('mBookContact')].forEach(el => {
         if (!el.value.trim()) {
@@ -1681,6 +1866,25 @@
       });
       return;
     }
+
+    const submitBtn = bookModal.querySelector('.booking-submit');
+    setSubmitLoading(submitBtn, true);
+
+    const payload = [
+      [' Name', name],
+      [' Contact', contact],
+      [' Plan', plan],
+      [' Notes', notes || 'None'],
+    ];
+
+    const sent = await sendToDiscord(payload);
+
+    if (!sent) {
+      const body = payload.map(([k, v]) => `${k}: ${v}`).join('\n');
+      fallbackEmail(`New Booking — ${plan} Plan — Auvality`, body);
+    }
+
+    setSubmitLoading(submitBtn, false);
     closeBookModal();
     document.getElementById('bookingFormWrap').style.display = 'none';
     document.getElementById('bookingSuccess').classList.add('show');
