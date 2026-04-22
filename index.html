@@ -1882,10 +1882,10 @@
     setSubmitLoading(submitBtn, true);
 
     const payload = [
-      ['👤 Name', name],
-      ['📬 Contact', contact],
-      ['📦 Plan', plan],
-      ['📝 Notes', notes || 'None'],
+      [' Name', name],
+      [' Contact', contact],
+      [' Plan', plan],
+      [' Notes', notes || 'None'],
     ];
 
     const sent = await sendToDiscord(payload);
