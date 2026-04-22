@@ -7,9 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <script src="./assets/data.js"></script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
       --bg:        #050505;
       --surface:   #111111;
@@ -1504,7 +1507,8 @@
       const features = plan.features.map(f => `<li>${f}</li>`).join('');
       const div = document.createElement('div');
       div.className = 'pricing-card' + (plan.featured ? ' featured' : '');
-      div.innerHTML = `<div class="card-border-glow"></div><span class="pricing-badge${plan.featured ? ' pop' : ''}">${plan.badge}</span><div class="pricing-name">${plan.name}</div><div class="pricing-desc">${plan.desc}</div><div class="pricing-price"><sup>$</sup>${plan.price}</div><div class="pricing-price-note">${plan.priceNote}</div><div class="pricing-divider"></div><ul class="pricing-features">${features}</ul><button class="pricing-cta${plan.featured ? ' primary' : ''}" onclick="scrollToBooking('${plan.name}')">Book This</button>;
+      div.innerHTML = `<div class="card-border-glow"></div><span class="pricing-badge${plan.featured ? ' pop' : ''}">${plan.badge}</span><div class="pricing-name">${plan.name}</div><div class="pricing-desc">${plan.desc}</div><div class="pricing-price"><sup>$</sup>${plan.price}</div><div class="pricing-price-note">${plan.priceNote}</div><div class="pricing-divider"></div><ul class="pricing-features">${features}</ul><button class="pricing-cta${plan.featured ? ' primary' : ''}" onclick="openBookModal('${plan.name}')">Book This</button>`;
+      pricingGrid.appendChild(div);
     });
 
     document.getElementById('bookingPill').textContent              = D.booking.pill;
