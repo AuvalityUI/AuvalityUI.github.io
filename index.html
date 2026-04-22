@@ -211,20 +211,16 @@
     /* ── CTA BUTTON ─────────────────────────────────────────── */
     .cta-button {
       background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.22);
+      border: 1px solid rgba(255,255,255,0.18);
       color: var(--text);
       padding: 14px 38px; border-radius: 40px;
       font-family: var(--ff-head); font-size: 10.5px; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase;
       transition: all .4s cubic-bezier(.175,.885,.32,1.275);
-      box-shadow: 0 0 18px rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.1);
-      animation: fadeUp .9s .55s cubic-bezier(.16,1,.3,1) both, ctaGlow 4s 1.5s ease-in-out infinite;
+      box-shadow: 0 0 0 0 rgba(255,255,255,0), inset 0 1px 0 rgba(255,255,255,0.1);
+      animation: fadeUp .9s .55s cubic-bezier(.16,1,.3,1) both;
       position: relative; overflow: hidden; display: inline-block;
       backdrop-filter: blur(8px);
-    }
-    @keyframes ctaGlow {
-      0%, 100% { box-shadow: 0 0 18px rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.1); }
-      50%       { box-shadow: 0 0 32px rgba(255,255,255,0.18), 0 0 0 1px rgba(255,255,255,0.12), inset 0 1px 0 rgba(255,255,255,0.15); }
     }
     .cta-button::after {
       content: ''; position: absolute; top: 0; left: -130%;
@@ -236,11 +232,10 @@
     @keyframes ctaGlint { 0% { left:-130%; } 100% { left:180%; } }
     .cta-button:hover {
       transform: translateY(-5px) scale(1.03);
-      background: rgba(255,255,255,0.14);
-      border-color: rgba(255,255,255,0.45);
-      box-shadow: 0 0 50px rgba(255,255,255,0.22), 0 0 100px rgba(255,255,255,0.08),
-                  0 0 0 1px rgba(255,255,255,0.28), 0 16px 40px rgba(0,0,0,0.4);
-      animation: none;
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.35);
+      box-shadow: 0 0 30px rgba(255,255,255,0.1), 0 0 0 1px rgba(255,255,255,0.2),
+                  0 16px 40px rgba(0,0,0,0.4);
     }
 
     /* ── DIVIDER ────────────────────────────────────────────── */
@@ -1452,11 +1447,6 @@
   window.addEventListener('scroll', () => {
     const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
     progressBar.style.width = Math.min(pct, 100) + '%';
-
-    // Parallax drift on sakura branches
-    const sy = window.scrollY * 0.13;
-    document.querySelector('.sakura-left').style.transform  = `scaleX(-1) translateY(${sy}px)`;
-    document.querySelector('.sakura-right').style.transform = `translateY(${sy}px)`;
   }, { passive: true });
 
   // Card 3D tilt on mouse move — debounced leave to stop edge-flicker bug
