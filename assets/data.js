@@ -81,8 +81,8 @@ const SITE_DATA = {
      */
     cards: [
       {
-        label:  "Modern UI/UX",
-        desc:   "Clean, minimal game interfaces",
+        label:  "Placeholder",
+        desc:   "Placeholder",
         images: [
           "./pictures/picture1.png",
           "./pictures/picture2.png",
@@ -90,8 +90,8 @@ const SITE_DATA = {
         ],
       },
       {
-        label:  "Cartoony UI/UX",
-        desc:   "Playful, expressive styles",
+        label:  "Placeholder",
+        desc:   "Placeholder",
         images: [
           "./pictures/picture4.png",
           "./pictures/picture5.png",
@@ -99,8 +99,8 @@ const SITE_DATA = {
         ],
       },
       {
-        label:  "Sci-Fi UI/UX",
-        desc:   "Futuristic, tech-driven interfaces",
+        label:  "Placeholder",
+        desc:   "Placeholder",
         images: [
           "./pictures/picture7.png",
           "./pictures/picture8.png",
@@ -108,8 +108,8 @@ const SITE_DATA = {
         ],
       },
       {
-        label:  "Fantasy UI/UX",
-        desc:   "Mythical, ornate design systems",
+        label:  "Placeholder",
+        desc:   "Placeholder",
         images: [
           "./pictures/picture10.png",
           "./pictures/picture11.png",
@@ -117,8 +117,8 @@ const SITE_DATA = {
         ],
       },
       {
-        label:  "Anime UI/UX",
-        desc:   "Dynamic, illustrative styles",
+        label:  "Placeholder",
+        desc:   "Placeholder",
         images: [
           "./pictures/picture13.png",
           "./pictures/picture14.png",
@@ -126,8 +126,8 @@ const SITE_DATA = {
         ],
       },
       {
-        label:  "Logos",
-        desc:   "Memorable brand identities",
+        label:  "Placeholder",
+        desc:   "Placeholder",
         images: [
           "./pictures/picture16.png",
           "./pictures/picture17.png",
@@ -143,7 +143,7 @@ const SITE_DATA = {
   projects: {
     pill:  "Projects",
     title: "Selected Work",
-    desc:  "Case studies and shipped projects.",
+    desc:  "Shipped projects.",
     comingSoonLabel: "Projects Coming Soon",
   },
 
@@ -157,7 +157,6 @@ const SITE_DATA = {
 
     bioLabel: "Background",
 
-    /** Two bio paragraphs. Use <strong> tags for bold inline text. */
     bio: [
       "Placeholder",
       "Placeholder",
@@ -193,16 +192,10 @@ const SITE_DATA = {
       },
     ],
   },
-
-  /* ─────────────────────────────────────────────────────────────
-     TESTIMONIALS SECTION  (#testimonials)
-     The track duplicates automatically — just fill this list.
-  ───────────────────────────────────────────────────────────── */
   testimonials: {
     pill:  "Testimonials",
     title: "What Clients Say",
     desc:  "Placeholder",
-
     reviews: [
       {
         body:   "Placeholder",
@@ -236,21 +229,16 @@ const SITE_DATA = {
       },
     ],
   },
-
-  /* ─────────────────────────────────────────────────────────────
-     PRICING SECTION  (#pricing)
-  ───────────────────────────────────────────────────────────── */
   pricing: {
     pill:  "Pricing",
     title: "Transparent Pricing",
     desc:  "Placeholder",
-
     plans: [
       {
         badge:    "Starter",
         name:     "Basic",
         desc:     "Placeholder",
-        price:    "49",         // Number only — $ symbol added automatically
+        price:    "49",       
         priceNote:"per screen",
         features: [
           "1 UI screen or logo",
@@ -273,7 +261,7 @@ const SITE_DATA = {
           "Placeholder",
           "Placeholder",
         ],
-        featured: true,         // Adds highlight border + glow
+        featured: true,      
       },
       {
         badge:    "Full Suite",
@@ -293,10 +281,6 @@ const SITE_DATA = {
       },
     ],
   },
-
-  /* ─────────────────────────────────────────────────────────────
-     BOOKING SECTION  (#booking)
-  ───────────────────────────────────────────────────────────── */
   booking: {
     pill:  "Booking",
     title: "Let's Work Together",
@@ -304,8 +288,6 @@ const SITE_DATA = {
 
     successTitle:   "Request Sent!",
     successMessage: "Thanks for reaching out — expect a reply within 24 hours.",
-
-    /** Budget dropdown options shown in the booking form */
     budgetOptions: [
       "Basic – $49",
       "Standard – $149",
@@ -313,39 +295,21 @@ const SITE_DATA = {
       "Custom / Let's discuss",
     ],
   },
-
-  /* ─────────────────────────────────────────────────────────────
-     COMMUNITY / DISCORD SECTION  (#community)
-  ───────────────────────────────────────────────────────────── */
   community: {
-    title:       "Placeholder",        // Section heading
-    desc:        "Placeholder",        // Section sub-description
+    title:       "Placeholder",        
+    desc:        "Placeholder",        
 
-    badgeText:   "Discord Server",     // Small pill badge label above the info title
-    infoTitle:   "Placeholder",        // Bold heading in the left column
-    infoDesc:    "Placeholder",        // Paragraph text in the left column
-    joinBtnText: "Join Server",        // Text on the join button
-
-    /** Paste your discord.gg/... invite URL here */
-    inviteLink:  "YOUR_DISCORD_INVITE_LINK",
-
-    /**
-     * Your Discord server's numeric ID — used for the embedded widget.
-     * How to find it: enable Developer Mode in Discord (Settings → Advanced),
-     * then right-click your server icon → Copy Server ID.
-     * Leave as 'YOUR_SERVER_ID' and the widget will be hidden until set.
-     */
-    serverId: "YOUR_SERVER_ID",
+    badgeText:   "Discord Server",     
+    infoTitle:   "Placeholder",        
+    infoDesc:    "Placeholder",        
+    joinBtnText: "Join Server",        
+    inviteLink:  "https://discord.gg/YxDBg28Uxa",
+    serverId: "1406339465630191706",
   },
-
-  /* ─────────────────────────────────────────────────────────────
-     FOOTER
-  ───────────────────────────────────────────────────────────── */
   footer: {
     brandName: "Game UI Designer",
     tagline:   "Placeholder",
     copyright: "© 2025 Auvality · All rights reserved",
-
     socials: {
       x:         "#",
       instagram: "#",
@@ -353,5 +317,4 @@ const SITE_DATA = {
       linkedin:  "#",
     },
   },
-
 };
