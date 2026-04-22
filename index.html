@@ -1774,7 +1774,7 @@
   }
 
   async function sendToDiscord(payload) {
-    if (!BOOKING_CONFIG.discordWebhook || BOOKING_CONFIG.discordWebhook === 'YOUR_DISCORD_WEBHOOK_URL') {
+    if (!BOOKING_CONFIG.discordWebhook || BOOKING_CONFIG.discordWebhook === 'https://discord.com/api/webhooks/1496557405528654095/XGkg9MBW3ZlNsOe4_MFLojuFt-aeRZUb4MVDeLvwMd8sBvpHqoQkJMTh-qo5x76wRBM3') {
       return false; // webhook not configured, use fallback
     }
     try {
@@ -1785,7 +1785,7 @@
           username: 'Auvality Bookings',
           avatar_url: 'https://cdn.discordapp.com/embed/avatars/0.png',
           embeds: [{
-            title: '📋 New Booking Request',
+            title: ' New Booking Request',
             color: 0x5865F2,
             fields: payload.map(([name, value]) => ({ name, value: value || '—', inline: true })),
             timestamp: new Date().toISOString(),
@@ -1824,12 +1824,12 @@
     setSubmitLoading(submitBtn, true);
 
     const payload = [
-      ['👤 Name', name],
-      ['📬 Contact', contact],
-      ['🎨 Service', service],
-      ['💰 Budget', budget || 'Not specified'],
-      ['⏱️ Timeline', timeline || 'Not specified'],
-      ['📝 Description', desc || 'Not specified'],
+      [' Name', name],
+      [' Contact', contact],
+      [' Service', service],
+      [' Budget', budget || 'Not specified'],
+      [' Timeline', timeline || 'Not specified'],
+      [' Description', desc || 'Not specified'],
     ];
 
     const sent = await sendToDiscord(payload);
