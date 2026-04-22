@@ -202,11 +202,7 @@
       animation: fadeUp .9s .35s cubic-bezier(.16,1,.3,1) both;
       letter-spacing: 0.02em;
     }
-    .hero-desc {
-      font-size: 13px; color: var(--muted); font-weight: 300;
-      max-width: 360px; margin-bottom: 40px; line-height: 1.75;
-      animation: fadeUp .9s .45s cubic-bezier(.16,1,.3,1) both;
-    }
+
 
     /* ── CTA BUTTON ─────────────────────────────────────────── */
     .cta-button {
@@ -559,11 +555,7 @@
     .lb-nav-center {
       flex: 1; display: flex; align-items: center; justify-content: center; height: 56px;
     }
-    .lb-counter {
-      font-family: var(--ff-head); font-size: 10px; font-weight: 700;
-      letter-spacing: 0.14em; color: rgba(255,255,255,0.35);
-      min-width: 44px; text-align: center;
-    }
+
     /* dot indicators */
     .lb-dots {
       display: flex; gap: 7px; align-items: center;
@@ -935,38 +927,7 @@
     }
     .discord-join-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
 
-    /* ── BOOKING MODAL ──────────────────────────────────────── */
-    .book-modal {
-      position: fixed; inset: 0; z-index: 25000;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(4,4,6,0.88); backdrop-filter: blur(16px);
-      opacity: 0; pointer-events: none; transition: opacity .35s ease;
-    }
-    .book-modal.open { opacity: 1; pointer-events: all; }
-    .book-modal-inner {
-      background: var(--surface); border-radius: 24px; padding: 36px;
-      max-width: 520px; width: 92%; border: 1px solid var(--border);
-      transform: scale(0.92) translateY(20px);
-      transition: transform .4s cubic-bezier(.16,1,.3,1);
-      box-shadow: 0 60px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.06);
-      position: relative; overflow: hidden;
-    }
-    .book-modal.open .book-modal-inner { transform: scale(1) translateY(0); }
-    .book-modal-inner::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
-    }
-    .book-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
-    .book-modal-title { font-family: var(--ff-head); font-size: 14px; font-weight: 800; letter-spacing: -0.02em; }
-    .book-modal-sub { font-size: 11px; color: var(--muted); font-weight: 300; margin-top: 3px; }
-    .book-modal-close {
-      width: 32px; height: 32px; border-radius: 50%;
-      background: var(--surface2); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; color: var(--muted); cursor: pointer; transition: all .2s;
-    }
-    .book-modal-close:hover { background: rgba(255,255,255,0.12); color: var(--text); }
-    .book-modal-form { display: flex; flex-direction: column; gap: 14px; }
+
 
     /* ── SAKURA BRANCHES ────────────────────────────────────── */
     .sakura-branch {
@@ -1010,8 +971,7 @@
       will-change: opacity;
     }
 
-    /* ── CURSOR SPOTLIGHT ────────────────────────────────────── */
-    .cursor-spotlight { display: none; }
+
 
     /* ── SCROLL PROGRESS BAR ─────────────────────────────────── */
     #scrollProgress {
@@ -1068,7 +1028,6 @@
 <body>
   <div id="scrollProgress"></div>
   <div class="bg-logo-watermark" aria-hidden="true"></div>
-  <div class="cursor-spotlight" id="cursorSpotlight"></div>
   <div class="page-border page-border-left"></div>
   <div class="page-border page-border-right"></div>
 
@@ -1314,33 +1273,8 @@
 
     <div class="section-divider"></div>
 
-    <!-- BOOKING MODAL -->
-    <div class="book-modal" id="bookModal" role="dialog" aria-modal="true">
-      <div class="book-modal-inner">
-        <div class="book-modal-header">
-          <div>
-            <div class="book-modal-title">Book a Slot</div>
-            <div class="book-modal-sub" id="modalPlanLabel">Plan selected</div>
-          </div>
-          <button class="book-modal-close" id="bookModalClose">✕</button>
-        </div>
-        <div class="book-modal-form">
-          <div class="form-group">
-            <label class="form-label">Your Name</label>
-            <input type="text" class="form-input" placeholder="e.g. Alex Smith" id="mBookName">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Contact / Discord</label>
-            <input type="text" class="form-input" placeholder="email or Discord tag" id="mBookContact">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Notes</label>
-            <textarea class="form-textarea" style="height:90px" placeholder="Any extra details…" id="mBookNotes"></textarea>
-          </div>
-          <button class="booking-submit" style="margin-top:4px" onclick="submitModal()">Send Request →</button>
-        </div>
-      </div>
-    </div>
+
+
 
     <!-- FOOTER -->
     <footer class="footer reveal" id="siteFooter">
@@ -1507,7 +1441,7 @@
       const features = plan.features.map(f => `<li>${f}</li>`).join('');
       const div = document.createElement('div');
       div.className = 'pricing-card' + (plan.featured ? ' featured' : '');
-      div.innerHTML = `<div class="card-border-glow"></div><span class="pricing-badge${plan.featured ? ' pop' : ''}">${plan.badge}</span><div class="pricing-name">${plan.name}</div><div class="pricing-desc">${plan.desc}</div><div class="pricing-price"><sup>$</sup>${plan.price}</div><div class="pricing-price-note">${plan.priceNote}</div><div class="pricing-divider"></div><ul class="pricing-features">${features}</ul><button class="pricing-cta${plan.featured ? ' primary' : ''}" onclick="openBookModal('${plan.name}')">Book This</button>`;
+      div.innerHTML = `<div class="card-border-glow"></div><span class="pricing-badge${plan.featured ? ' pop' : ''}">${plan.badge}</span><div class="pricing-name">${plan.name}</div><div class="pricing-desc">${plan.desc}</div><div class="pricing-price"><sup>$</sup>${plan.price}</div><div class="pricing-price-note">${plan.priceNote}</div><div class="pricing-divider"></div><ul class="pricing-features">${features}</ul><button class="pricing-cta${plan.featured ? ' primary' : ''}" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book This</button>`;
       pricingGrid.appendChild(div);
     });
 
@@ -1557,17 +1491,13 @@
      ENHANCED INTERACTIONS
   ════════════════════════════════════════════════════════════ */
 
-  // Cursor spotlight — disabled
-  // const spotlight = document.getElementById('cursorSpotlight');
 
-  // Scroll progress bar
   const progressBar = document.getElementById('scrollProgress');
   window.addEventListener('scroll', () => {
     const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
     progressBar.style.width = Math.min(pct, 100) + '%';
   }, { passive: true });
 
-  // Card 3D tilt on mouse move — debounced leave to stop edge-flicker bug
   document.querySelectorAll('.card').forEach(card => {
     let leaveTimer = null;
     let isHovered = false;
@@ -1587,7 +1517,6 @@
     });
 
     card.addEventListener('mouseleave', e => {
-      // Only reset if the mouse truly left (not just brushed a child element's boundary)
       leaveTimer = setTimeout(() => {
         if (isHovered) {
           isHovered = false;
@@ -1597,7 +1526,6 @@
     });
   });
 
-  // Magnetic CTA buttons
   document.querySelectorAll('.cta-button').forEach(btn => {
     btn.addEventListener('mousemove', e => {
       const r = btn.getBoundingClientRect();
@@ -1610,7 +1538,6 @@
     });
   });
 
-  // Animated stat counters
   function animateCounter(el) {
     const target = parseInt(el.textContent.replace(/\D/g, ''), 10);
     const suffix = el.textContent.replace(/[\d]/g, '');
@@ -1636,7 +1563,6 @@
   }, { threshold: 0.6 });
   document.querySelectorAll('.stat-num').forEach(el => counterObserver.observe(el));
 
-  // Mouse-tracking border glow on all glow-enabled cards
   document.querySelectorAll('.pricing-card, .about-bio, .stat-box, .process-step, .booking-card, .tcard').forEach(el => {
     el.addEventListener('mousemove', e => {
       const r = el.getBoundingClientRect();
@@ -1685,14 +1611,12 @@
   let lbIndex   = 0;
 
   function renderLb() {
-    // Fade out → swap → fade in
     lbMainImg.classList.add('fading');
     setTimeout(() => {
       lbMainImg.style.backgroundImage = `url('${lbImages[lbIndex]}')`;
       lbMainImg.classList.remove('fading');
     }, 180);
 
-    // Dots
     lbDots.innerHTML = '';
     lbImages.forEach((_, i) => {
       const d = document.createElement('button');
@@ -1710,7 +1634,6 @@
     lbImages = imgs;
     lbIndex  = startIndex || 0;
     lightboxLabel.textContent = label;
-    // Show immediately without fade on first open
     lbMainImg.style.backgroundImage = `url('${lbImages[lbIndex]}')`;
     renderLb();
     lightbox.classList.add('open');
@@ -1734,7 +1657,6 @@
     const startIndex = popImg ? parseInt(popImg.dataset.index, 10) : 0;
     const imgs = JSON.parse(card.dataset.imgs);
 
-    // stop pop-img click from also triggering card-level logic twice
     e.stopPropagation();
     openLightbox(card.dataset.label, imgs, startIndex);
   });
@@ -1746,21 +1668,12 @@
     if (lightbox.classList.contains('open')) {
       if (e.key === 'ArrowLeft'  && lbIndex > 0)                  { lbIndex--; renderLb(); }
       if (e.key === 'ArrowRight' && lbIndex < lbImages.length - 1) { lbIndex++; renderLb(); }
-      if (e.key === 'Escape') { closeLightbox(); closeBookModal(); }
-    } else {
-      if (e.key === 'Escape') closeBookModal();
+      if (e.key === 'Escape') closeLightbox();
     }
   });
 
-  /* ════════════════════════════════════════════════════════════
-     BOOKING CONFIG — paste your Discord webhook URL below
-  ════════════════════════════════════════════════════════════ */
   const BOOKING_CONFIG = {
-    // Option A: Discord Webhook (recommended)
-    // Create one in your Discord server: Server Settings → Integrations → Webhooks
     discordWebhook: 'https://discord.com/api/webhooks/1496557405528654095/XGkg9MBW3ZlNsOe4_MFLojuFt-aeRZUb4MVDeLvwMd8sBvpHqoQkJMTh-qo5x76wRBM3',
-
-    // Option B: Fallback email (used if webhook is not set)
     fallbackEmail: 'auvality@gmail.com',
   };
 
@@ -1774,8 +1687,8 @@
   }
 
   async function sendToDiscord(payload) {
-    if (!BOOKING_CONFIG.discordWebhook || BOOKING_CONFIG.discordWebhook === 'https://discord.com/api/webhooks/1496557405528654095/XGkg9MBW3ZlNsOe4_MFLojuFt-aeRZUb4MVDeLvwMd8sBvpHqoQkJMTh-qo5x76wRBM3') {
-      return false; // webhook not configured, use fallback
+    if (!BOOKING_CONFIG.discordWebhook) {
+      return false;
     }
     try {
       const res = await fetch(BOOKING_CONFIG.discordWebhook, {
@@ -1835,7 +1748,6 @@
     const sent = await sendToDiscord(payload);
 
     if (!sent) {
-      // Fallback: open mailto
       const body = payload.map(([k, v]) => `${k}: ${v}`).join('\n');
       fallbackEmail('New Booking Request — Auvality', body);
     }
@@ -1845,65 +1757,6 @@
     document.getElementById('bookingSuccess').classList.add('show');
   }
 
-  /* ════════════════════════════════════════════════════════════
-     BOOKING MODAL
-  ════════════════════════════════════════════════════════════ */
-  const bookModal      = document.getElementById('bookModal');
-  const bookModalClose = document.getElementById('bookModalClose');
-
-  function openBookModal(plan) {
-    document.getElementById('modalPlanLabel').textContent = plan + ' plan selected';
-    // Pre-fill the plan in the main booking form service select if possible
-    bookModal.dataset.plan = plan;
-    bookModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeBookModal() {
-    bookModal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  async function submitModal() {
-    const name    = document.getElementById('mBookName').value.trim();
-    const contact = document.getElementById('mBookContact').value.trim();
-    const notes   = document.getElementById('mBookNotes').value.trim();
-    const plan    = bookModal.dataset.plan || '';
-
-    if (!name || !contact) {
-      [document.getElementById('mBookName'), document.getElementById('mBookContact')].forEach(el => {
-        if (!el.value.trim()) {
-          el.style.borderColor = 'rgba(255,80,80,0.5)';
-          setTimeout(() => el.style.borderColor = '', 1800);
-        }
-      });
-      return;
-    }
-
-    const submitBtn = bookModal.querySelector('.booking-submit');
-    setSubmitLoading(submitBtn, true);
-
-    const payload = [
-      [' Name', name],
-      [' Contact', contact],
-      [' Plan', plan],
-      [' Notes', notes || 'None'],
-    ];
-
-    const sent = await sendToDiscord(payload);
-
-    if (!sent) {
-      const body = payload.map(([k, v]) => `${k}: ${v}`).join('\n');
-      fallbackEmail(`New Booking — ${plan} Plan — Auvality`, body);
-    }
-
-    setSubmitLoading(submitBtn, false);
-    closeBookModal();
-    document.getElementById('bookingFormWrap').style.display = 'none';
-    document.getElementById('bookingSuccess').classList.add('show');
-    document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  bookModalClose.addEventListener('click', closeBookModal);
-  bookModal.addEventListener('click', e => { if (e.target === bookModal) closeBookModal(); });
 
   </script>
 </body>
