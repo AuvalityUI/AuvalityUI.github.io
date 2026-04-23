@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Auvality — Game UI/UX Designer</title>
+  <link rel="icon" type="image/png" href="pictures/avatar.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -50,12 +51,43 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
-      cursor: auto;
+      cursor: none;
     }
 
-    a { text-decoration: none; color: inherit; cursor: pointer; }
+    a { text-decoration: none; color: inherit; cursor: none; }
     ul { list-style: none; }
-    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    button { cursor: none; border: none; background: none; font-family: inherit; }
+
+    /* ── Custom Cursor ── */
+    #cursor-dot,
+    #cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+      mix-blend-mode: difference;
+    }
+    #cursor-dot {
+      width: 6px; height: 6px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform .08s ease, width .22s ease, height .22s ease, opacity .22s ease;
+    }
+    #cursor-ring {
+      width: 30px; height: 30px;
+      border: 1.5px solid rgba(255,255,255,0.6);
+      border-radius: 50%;
+      transition: width .3s cubic-bezier(.175,.885,.32,1.275),
+                  height .3s cubic-bezier(.175,.885,.32,1.275),
+                  border-color .25s ease,
+                  opacity .25s ease;
+    }
+    body.cursor-hovering #cursor-dot  { width: 10px; height: 10px; }
+    body.cursor-hovering #cursor-ring { width: 48px; height: 48px; border-color: rgba(255,255,255,0.9); }
+    body.cursor-clicking #cursor-dot  { transform: translate(-50%,-50%) scale(0.6); }
+    body.cursor-clicking #cursor-ring { width: 22px; height: 22px; border-color: #fff; }
 
     
     .container { max-width: 1020px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 3; }
@@ -262,8 +294,12 @@
       border: 1px solid var(--border);
       transition: transform .45s cubic-bezier(.175,.885,.32,1.275),
                   box-shadow .45s ease, border-color .3s ease;
-      cursor: pointer; position: relative; overflow: hidden;
+      cursor: none; position: relative; overflow: visible;
       opacity: 0; transform: translateY(36px) scale(0.88);
+    }
+    .card-clip {
+      position: absolute; inset: 0; border-radius: var(--r-card);
+      overflow: hidden; pointer-events: none; z-index: 0;
     }
     .card::before {
       content: ''; position: absolute; inset: 0; border-radius: inherit; z-index: 0;
@@ -427,9 +463,11 @@
 
     
     .popout-images {
-      position: absolute; bottom: 22px; left: 50%;
-      transform: translateX(-50%); width: 100%; height: 100%;
-      z-index: 5; pointer-events: none; 
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 132px; height: 92px;
+      z-index: 20; pointer-events: none;
     }
     .pop-img {
       position: absolute; width: 58px; height: 40px;
@@ -443,9 +481,9 @@
     .pop-img:nth-child(2) { right: 6px; bottom: -8px; transform: rotate(0) scale(0.82); transition-delay: .035s; }
     .pop-img:nth-child(3) { left: 50%;  bottom: -8px; transform: translateX(-50%) scale(0.82); width: 68px; height: 46px; z-index: 2; transition-delay: 0s; }
     .card:hover .pop-img { opacity: 1; }
-    .card:hover .pop-img:nth-child(1) { bottom: 10px; transform: rotate(-14deg) scale(1) translateX(-4px); transition-delay: 0s; }
-    .card:hover .pop-img:nth-child(2) { bottom: 10px; transform: rotate(14deg)  scale(1) translateX( 4px); transition-delay: .035s; }
-    .card:hover .pop-img:nth-child(3) { bottom: 20px; transform: translateX(-50%) scale(1); transition-delay: .07s; }
+    .card:hover .pop-img:nth-child(1) { bottom: 62px; transform: rotate(-14deg) scale(1) translateX(-4px); transition-delay: 0s; }
+    .card:hover .pop-img:nth-child(2) { bottom: 62px; transform: rotate(14deg)  scale(1) translateX( 4px); transition-delay: .035s; }
+    .card:hover .pop-img:nth-child(3) { bottom: 72px; transform: translateX(-50%) scale(1); transition-delay: .07s; }
 
     
     .card:hover .pop-img {
@@ -1017,6 +1055,8 @@
   </style>
 </head>
 <body>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
   <div id="scrollProgress"></div>
   <div class="bg-logo-watermark" aria-hidden="true"></div>
   <div class="page-border page-border-left"></div>
@@ -1347,19 +1387,21 @@
       el.dataset.label = card.label;
       el.dataset.imgs  = JSON.stringify(card.images);
       el.innerHTML = `
-        <div class="border-glow"></div>
+        <div class="card-clip">
+          <div class="border-glow"></div>
+          <div class="card-shimmer"></div>
+        </div>
         <span class="card-click-hint">Click to view</span>
         <div class="folder">
           <div class="folder-back"></div>
           <div class="folder-inside"></div>
-          <div class="popout-images">
-            <div class="pop-img" data-index="0" style="background-image:url('${card.images[0]}')"></div>
-            <div class="pop-img" data-index="1" style="background-image:url('${card.images[1]}')"></div>
-            <div class="pop-img" data-index="2" style="background-image:url('${card.images[2]}')"></div>
-          </div>
           <div class="folder-front"></div>
         </div>
-        <div class="card-shimmer"></div>
+        <div class="popout-images">
+          <div class="pop-img" data-index="0" style="background-image:url('${card.images[0]}')"></div>
+          <div class="pop-img" data-index="1" style="background-image:url('${card.images[1]}')"></div>
+          <div class="pop-img" data-index="2" style="background-image:url('${card.images[2]}')"></div>
+        </div>
         <div class="card-title">${card.label}</div>
         <div class="card-desc">${card.desc}</div>
       `;
@@ -1667,6 +1709,7 @@
     if (!BOOKING_CONFIG.discordWebhook) {
       return false;
     }
+    const fieldMap = Object.fromEntries(payload.map(([k, v]) => [k.trim(), v]));
     try {
       const res = await fetch(BOOKING_CONFIG.discordWebhook, {
         method: 'POST',
@@ -1675,11 +1718,20 @@
           username: 'Auvality Bookings',
           avatar_url: 'https://cdn.discordapp.com/embed/avatars/0.png',
           embeds: [{
-            title: ' New Booking Request',
-            color: 0x5865F2,
-            fields: payload.map(([name, value]) => ({ name, value: value || '—', inline: true })),
+            title: '📥  New Booking Request',
+            description: `> **${fieldMap['Name'] || '—'}** is requesting **${fieldMap['Service'] || '—'}**`,
+            color: 0xffffff,
+            fields: [
+              { name: '  Name',    value: fieldMap['Name']    || '—', inline: true },
+              { name: '  Contact', value: fieldMap['Contact'] || '—', inline: true },
+              { name: '  Service', value: fieldMap['Service'] || '—', inline: true },
+              { name: '  Budget',  value: fieldMap['Budget']  || '—', inline: true },
+              { name: '  Timeline',value: fieldMap['Timeline']|| '—', inline: true },
+              { name: '\u200b',      value: '\u200b',                   inline: true },
+              { name: '  Description', value: fieldMap['Description'] || '—', inline: false },
+            ],
             timestamp: new Date().toISOString(),
-            footer: { text: 'Auvality Booking System' }
+            footer: { text: 'Auvality Booking System  •  auvality.com' }
           }]
         })
       });
@@ -1714,12 +1766,12 @@
     setSubmitLoading(submitBtn, true);
 
     const payload = [
-      [' Name', name],
-      [' Contact', contact],
-      [' Service', service],
-      [' Budget', budget || 'Not specified'],
-      [' Timeline', timeline || 'Not specified'],
-      [' Description', desc || 'Not specified'],
+      ['Name',        name],
+      ['Contact',     contact],
+      ['Service',     service],
+      ['Budget',      budget || 'Not specified'],
+      ['Timeline',    timeline || 'Not specified'],
+      ['Description', desc || 'Not specified'],
     ];
 
     const sent = await sendToDiscord(payload);
@@ -1733,6 +1785,37 @@
     document.getElementById('bookingFormWrap').style.display = 'none';
     document.getElementById('bookingSuccess').classList.add('show');
   }
+  (function() {
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mx = -100, my = -100;
+    let rx = -100, ry = -100;
+    let raf;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left  = mx + 'px';
+      dot.style.top   = my + 'px';
+    }, { passive: true });
+    function loop() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      raf = requestAnimationFrame(loop);
+    }
+    loop();
+    const hoverTargets = 'a, button, [role="button"], .card, .social-btn, .cta-button, .pricing-cta, .lb-nav-btn, .lb-dot, .lightbox-close, input, textarea, select';
+    document.addEventListener('mouseover', e => {
+      if (e.target.closest(hoverTargets)) document.body.classList.add('cursor-hovering');
+    });
+    document.addEventListener('mouseout', e => {
+      if (e.target.closest(hoverTargets)) document.body.classList.remove('cursor-hovering');
+    });
+    document.addEventListener('mousedown', () => document.body.classList.add('cursor-clicking'));
+    document.addEventListener('mouseup',   () => document.body.classList.remove('cursor-clicking'));
+    document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { dot.style.opacity = ''; ring.style.opacity = ''; });
+  })();
 
   </script>
 </body>
