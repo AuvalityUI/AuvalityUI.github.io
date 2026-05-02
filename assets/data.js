@@ -79,7 +79,7 @@ const SITE_DATA = {
         label: "Cartoonish",
         desc: "Cartoonish style UIs.",
         images: [
-          "https://cdn.discordapp.com/attachments/1476660767188324403/1500129200907092119/x92r3r7.png?ex=69f74fb0&is=69f5fe30&hm=911b301be7905a6f3dcf3b5cc8f2fe65e2653adb87dc202737eb874da0645eae&",
+          "./pictures/picture7.png",
           "./pictures/picture8.png",
           "./pictures/picture9.png",
         ],
