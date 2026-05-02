@@ -40,9 +40,7 @@ const SITE_DATA = {
     avatar: "./pictures/avatar.png",
     socials: {
       x: "#",
-      instagram: "#",
       discord: "#",
-      linkedin: "#",
     },
   },
 
@@ -66,159 +64,6 @@ const SITE_DATA = {
           "./pictures/picture1.png",
           "./pictures/picture2.png",
           "./pictures/picture3.png",
-        ],
-      },
-      {
-        label: "Stud",
-        desc: "Stud/Brainrot style UIs.",
-        images: [
-          "./pictures/picture4.png",
-          "./pictures/picture5.png",
-          "./pictures/picture6.png",
-        ],
-      },
-      {
-        label: "Cartoonish",
-        desc: "Cartoonish style UIs.",
-        images: [
-          "./pictures/picture7.png",
-          "./pictures/picture8.png",
-          "./pictures/picture9.png",
-        ],
-      },
-      {
-        label: "Realism",
-        desc: "Realistic UIs.",
-        images: [
-          "./pictures/picture10.png",
-          "./pictures/picture11.png",
-          "./pictures/picture12.png",
-        ],
-      },
-      {
-        label: "Pixel",
-        desc: "Pixel-style UIs.",
-        images: [
-          "./pictures/picture13.png",
-          "./pictures/picture14.png",
-          "./pictures/picture15.png",
-        ],
-      },
-      {
-        label: "More",
-        desc: "More from Auvality.",
-        images: [
-          "./pictures/picture16.png",
-          "./pictures/picture17.png",
-          "./pictures/picture18.png",
-        ],
-      },
-    ],
-  },
-
-  projects: {
-    pill: "Projects",
-    title: "Selected Work",
-    desc: "Shipped projects.",
-    comingSoonLabel: "Projects Coming Soon",
-  },
-
-  about: {
-    pill: "About",
-    title: "Who I Am",
-    desc: "A bit about the designer behind the work.",
-    bioLabel: "Auvality | Graphics Designer",
-    bio: [
-      "With over an year of hands-on experience in graphic design, I specialize in logos, banners, and UI each created with a strong sense of clarity, style, and purpose.",
-      "Alongside, I bring over four years of experience in Discord design, building fully customized servers tailored to your exact vision, as-well as managing thousands of communities.",
-    ],
-
-    stats: [
-      { num: "50+", label: "Projects Done" },
-      { num: "1+", label: "Years Active" },
-      { num: "30+", label: "Happy Clients" },
-      { num: "6", label: "Style Ranges" },
-    ],
-
-    process: [
-      {
-        step: "01",
-        title: "Years in the Industry",
-        desc: "Over a year of refined experience delivering high-end UI design with a focus on precision, elegance, and visual impact.",
-      },
-      {
-        step: "02",
-        title: "Dedication",
-        desc: "An uncompromising commitment to detail—each element is thoughtfully crafted and meticulously refined.",
-      },
-      {
-        step: "03",
-        title: "Standard First",
-        desc: "No rushed work. Each UI is carefully designed to feel up to standard, smooth, and game-ready.",
-      },
-      {
-        step: "04",
-        title: "Client Focused",
-        desc: "A seamless, professional process defined by clear communication, discretion, and tailored design solutions.",
-      },
-    ],
-  },
-
-  testimonials: {
-    pill: "Testimonials",
-    title: "What Clients Say",
-    desc: "What Clients Say About Working With Me.",
-    reviews: [
-      {
-        body: `Rating: 10/10
-He finished on time very easy communication cool guy.`,
-        name: "skaterstudios",
-        role: "Placeholder",
-        avatar: "https://cdn.discordapp.com/attachments/1476660767188324403/1500167568093216879/h9h520j.png?ex=69f7736b&is=69f621eb&hm=02b6e415f429835d188a400fc8820b2ba16fb7caffa746084901f6407af0c0f8&",
-      },
-      {
-        body: `I vouch 9/10 for his honest and hard work ethic.`,
-        name: "RunItTakeo",
-        role: "Placeholder",
-        avatar: "https://cdn.discordapp.com/attachments/1476660767188324403/1500118438436274448/kk83fnf.png?ex=69f745aa&is=69f5f42a&hm=f864ad85d95695e0b508e2fc40850aa8f7b24b8ff1804c81f0e0d720abac3c62&",
-      },
-      {
-        body: `Vouch 10/10 Good guy 👏.`,
-        name: "Kurt",
-        role: "Placeholder",
-        avatar: "https://cdn.discordapp.com/attachments/1476660767188324403/1500118317434933358/n9vn4nt.png?ex=69f7458d&is=69f5f40d&hm=d939b45e610cbab0145a6820252d2b9f04f2e88faf2f24d8e42aefbfda378a2f&",
-      },
-      {
-        body: `I'll keep this short, but he's my go-to from now on.`,
-        name: "CenturionPreator",
-        role: "Placeholder",
-        avatar: "https://cdn.discordapp.com/attachments/1476660767188324403/1500119297400373248/7s0x9s1.png?ex=69f74677&is=69f5f4f7&hm=ad6104c2f642484a61103f21fd99f55fe13055edcf78afd46a25b6cf6521a5cc&",
-      },
-      {
-        body: `Gave me what I wanted exactly, colors on the spot and quite a fun person to talk to.`,
-        name: "Hawk",
-        role: "Placeholder",
-        avatar: "https://cdn.discordapp.com/attachments/1476660767188324403/1500118064170139729/8rbs10m.png?ex=69f74551&is=69f5f3d1&hm=53eccff13f0e3e7c184e0fdd362643f4b82c720ae34b0b770958f7b4c2590785&",
-      },
-    ],
-  },
-
-  pricing: {
-    pill: "Pricing",
-    title: "Transparent Pricing",
-    desc: "Know exactly what you’re paying for from the start.",
-    plans: [
-      {
-        badge: "Starter",
-        name: "Equara",
-        desc: "The Standard.",
-        price: "R$4500 + (Tax)",
-        priceNote: "per screen",
-        features: [
-          "Per Frame",
-          "Fast Delivery",
-          "4 Revisions",
-          "Included Source File",
         ],
         featured: false,
       },
@@ -285,9 +130,7 @@ He finished on time very easy communication cool guy.`,
     copyright: "© 2025 Auvality · All rights reserved",
     socials: {
       x: "#",
-      instagram: "#",
       discord: "#",
-      linkedin: "#",
     },
   },
 };
