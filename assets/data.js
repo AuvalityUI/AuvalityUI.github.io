@@ -127,7 +127,7 @@ const SITE_DATA = {
     desc: "A bit about the designer behind the work.",
     bioLabel: "Auvality | Graphics Designer",
     bio: [
-      "With over an year of hands-on experience in graphic design, I specialize in logos, banners, and UI each created with a strong sense of clarity, style, and purpose.",
+      "With over a year of hands-on experience in graphic design, I specialize in logos, banners, and UI each created with a strong sense of clarity, style, and purpose.",
       "Alongside, I bring over four years of experience in Discord design, building fully customized servers tailored to your exact vision, as-well as managing thousands of communities.",
     ],
 
