@@ -1378,6 +1378,7 @@
       el.className   = 'card';
       el.dataset.label = card.label;
       el.dataset.imgs  = JSON.stringify(card.images);
+      el.dataset.links = JSON.stringify(card.links || []);
       el.innerHTML = `
         <div class="border-glow"></div>
         <span class="card-click-hint">Click to view</span>
@@ -1443,8 +1444,11 @@
 
     function makeReviewCard(r) {
       const stars = Array(5).fill('<span>★</span>').join('');
+      const avatarHTML = r.avatar
+        ? `<img src="${r.avatar}" alt="${r.name}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;" onerror="this.style.display='none';this.parentElement.textContent='${r.name.charAt(0).toUpperCase()}'">`
+        : r.name.charAt(0).toUpperCase();
       const div = document.createElement('div'); div.className = 'tcard';
-      div.innerHTML = `<div class="card-border-glow"></div><div class="tcard-stars">${stars}</div><div class="tcard-body">${r.body}</div><div class="tcard-author"><div class="tcard-avatar">${r.avatar}</div><div><div class="tcard-name">${r.name}</div><div class="tcard-role">${r.role}</div></div></div>`;
+      div.innerHTML = `<div class="card-border-glow"></div><div class="tcard-stars">${stars}</div><div class="tcard-body">${r.body}</div><div class="tcard-author"><div class="tcard-avatar">${avatarHTML}</div><div><div class="tcard-name">${r.name}</div><div class="tcard-role">${r.role}</div></div></div>`;
       return div;
     }
     const track = document.getElementById('testimonialsTrack');
@@ -1666,10 +1670,17 @@
 
     const popImg = e.target.closest('.pop-img');
     const startIndex = popImg ? parseInt(popImg.dataset.index, 10) : 0;
-    const imgs = JSON.parse(card.dataset.imgs);
+    const imgs  = JSON.parse(card.dataset.imgs);
+    const links = JSON.parse(card.dataset.links || '[]');
+    const link  = links[startIndex];
 
     e.stopPropagation();
-    openLightbox(card.dataset.label, imgs, startIndex);
+
+    if (link && link !== '#') {
+      window.open(link, '_blank', 'noopener,noreferrer');
+    } else {
+      openLightbox(card.dataset.label, imgs, startIndex);
+    }
   });
 
   lightboxClose.addEventListener('click', closeLightbox);
@@ -1775,8 +1786,6 @@
     document.getElementById('bookingFormWrap').style.display = 'none';
     document.getElementById('bookingSuccess').classList.add('show');
   }
-
-  // ── Custom Cursor ──
   (function() {
     const dot  = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
