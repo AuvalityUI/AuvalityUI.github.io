@@ -734,6 +734,8 @@
     .work-item {
       width: 220px; height: 145px; flex-shrink: 0; border-radius: 14px;
       background: var(--surface);
+      background-size: cover;
+      background-position: center;
       border: 1px solid var(--border);
       box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
       transition: transform .35s cubic-bezier(.175,.885,.32,1.275),
@@ -1314,7 +1316,12 @@
       doubled.forEach(src => {
         const el = document.createElement('div');
         el.className = 'work-item';
-        el.style.backgroundImage = `url('${src}')`;
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        el.appendChild(img);
         workTrack.appendChild(el);
       });
       workWrap.addEventListener('click', () => {
