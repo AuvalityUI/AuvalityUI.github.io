@@ -121,6 +121,11 @@ const SITE_DATA = {
       "./pictures/work1.png",
       "./pictures/work2.png",
       "./pictures/work3.png",
+      "./pictures/work4.png",
+      "./pictures/work5.png",
+      "./pictures/work6.png",
+      "./pictures/work7.png",
+      "./pictures/work8.png",
     ],
   },
 
@@ -164,7 +169,6 @@ const SITE_DATA = {
       },
     ],
   },
-
   testimonials: {
     pill: "Testimonials",
     title: "What Clients Say",
@@ -182,7 +186,7 @@ const SITE_DATA = {
         name: "RunItTakeo",
         role: "",
         avatar: "./pictures/review2.png",
-        stars: 4.5,   // 9/10 → 4.5 out of 5 stars
+        stars: 4.5,  
       },
       {
         body: `Vouch 10/10 Good guy 👏.`,
