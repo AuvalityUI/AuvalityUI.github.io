@@ -418,9 +418,13 @@
       position: absolute; width: 58px; height: 40px;
       border-radius: 5px; border: 1.5px solid rgba(255,255,255,0.12);
       box-shadow: 0 4px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
-      background-size: cover; background-position: center;
       opacity: 0; transition: all .45s cubic-bezier(.175,.885,.32,1.275);
-      cursor: default;
+      cursor: default; overflow: hidden;
+    }
+    .pop-img img {
+      width: 100%; height: 100%; display: block;
+      object-fit: cover; object-position: center;
+      border-radius: 4px;
     }
     .pop-img:nth-child(1) { left: 6px;  bottom: -8px; transform: rotate(0) scale(0.82); transition-delay: .07s; }
     .pop-img:nth-child(2) { right: 6px; bottom: -8px; transform: rotate(0) scale(0.82); transition-delay: .035s; }
@@ -729,12 +733,17 @@
     }
     .work-item {
       width: 220px; height: 145px; flex-shrink: 0; border-radius: 14px;
-      background: var(--surface) center/cover no-repeat;
+      background: var(--surface);
       border: 1px solid var(--border);
       box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
       transition: transform .35s cubic-bezier(.175,.885,.32,1.275),
                   border-color .3s ease, box-shadow .35s ease;
       position: relative; overflow: hidden;
+    }
+    .work-item img {
+      width: 100%; height: 100%; display: block;
+      object-fit: cover; object-position: center;
+      border-radius: 14px;
     }
     .work-item::after {
       content: ''; position: absolute; inset: 0; border-radius: inherit;
@@ -1282,9 +1291,9 @@
           <div class="folder-back"></div>
           <div class="folder-inside"></div>
           <div class="popout-images">
-            <div class="pop-img" data-index="0" style="background-image:url('${card.images[0]}')"></div>
-            <div class="pop-img" data-index="1" style="background-image:url('${card.images[1]}')"></div>
-            <div class="pop-img" data-index="2" style="background-image:url('${card.images[2]}')"></div>
+            <div class="pop-img" data-index="0"><img src="${card.images[0]}" alt=""></div>
+            <div class="pop-img" data-index="1"><img src="${card.images[1]}" alt=""></div>
+            <div class="pop-img" data-index="2"><img src="${card.images[2]}" alt=""></div>
           </div>
           <div class="folder-front"></div>
         </div>
