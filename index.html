@@ -711,30 +711,16 @@
     }
     .work-marquee-wrap {
       overflow: hidden; position: relative; margin: 0 -32px;
-      cursor: pointer;
     }
-    .work-marquee-wrap::before,
     .work-marquee-wrap::after {
       content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; pointer-events: none;
     }
     .work-marquee-wrap::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
     .work-marquee-wrap::after  { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
-    .work-marquee-hint {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      z-index: 5; pointer-events: none;
-      background: rgba(0,0,0,0.72); backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.16); border-radius: 30px;
-      padding: 8px 20px; font-family: var(--ff-head); font-size: 9.5px;
-      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
-      opacity: 0; transition: opacity .3s ease;
-    }
-    .work-marquee-wrap:hover .work-marquee-hint { opacity: 1; }
     .work-marquee-track {
       display: flex; gap: 14px; width: max-content; padding: 4px 32px 4px;
       animation: workMarquee 32s linear infinite;
     }
-    .work-marquee-wrap:hover .work-marquee-track { animation-play-state: paused; }
     @keyframes workMarquee {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -751,11 +737,6 @@
     .work-item::after {
       content: ''; position: absolute; inset: 0; border-radius: inherit;
       background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.35) 100%);
-    }
-    .work-marquee-wrap:hover .work-item {
-      transform: translateY(-5px);
-      border-color: rgba(255,255,255,0.22);
-      box-shadow: 0 18px 48px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.1);
     }  
     .pricing-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -1095,7 +1076,6 @@
         <p class="section-desc" id="projectsDesc"></p>
       </div>
       <div class="work-marquee-wrap reveal" id="workMarqueeWrap">
-        <div class="work-marquee-hint">Click to browse all work</div>
         <div class="work-marquee-track" id="workMarqueeTrack"></div>
       </div>
     </section>
