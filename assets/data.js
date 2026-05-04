@@ -29,7 +29,7 @@
  *   picture17.png       — Logos card, pop-out right                (card 6, slot 2)
  *   picture18.png       — Logos card, pop-out centre               (card 6, slot 3)
  *
- *   work1.png … workN.png  — Selected Work marquee images (add as many as you like)
+ *   work1.png 
  *
  * All lightbox grids also use picture1–picture18 in the same groupings as the cards.
  */
