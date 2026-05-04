@@ -29,9 +29,10 @@
  *   picture17.png       — Logos card, pop-out right                (card 6, slot 2)
  *   picture18.png       — Logos card, pop-out centre               (card 6, slot 3)
  *
+ *   work1.png … workN.png  — Selected Work marquee images (add as many as you like)
+ *
  * All lightbox grids also use picture1–picture18 in the same groupings as the cards.
  */
-
 const SITE_DATA = {
   header: {
     name: "Auvality",
@@ -39,11 +40,10 @@ const SITE_DATA = {
     statusText: "Available · New Prices",
     avatar: "./pictures/avatar.png",
     socials: {
-      x: "#",
-      discord: "#",
+      x: "https://x.com/auvality",
+      discord: "https://discord.com/users/1400548444669739158",
     },
   },
-
   hero: {
     title: "AUVALITY",
     subtitle: "Game UI Designer",
@@ -51,7 +51,6 @@ const SITE_DATA = {
     ctaRight: "Book a Slot",
     footerNote: "",
   },
-
   services: {
     pill: "Services",
     title: "What I Do",
@@ -113,12 +112,16 @@ const SITE_DATA = {
       },
     ],
   },
-
   projects: {
     pill: "Projects",
     title: "Selected Work",
     desc: "Shipped projects.",
     comingSoonLabel: "Projects Coming Soon",
+    workImages: [
+      "./pictures/work1.png",
+      "./pictures/work2.png",
+      "./pictures/work3.png",
+    ],
   },
 
   about: {
@@ -168,43 +171,46 @@ const SITE_DATA = {
     desc: "What Clients Say About Working With Me.",
     reviews: [
       {
-        body: `Rating: 10/10
-He finished on time very easy communication cool guy.`,
+        body: `Rating: 10/10\nHe finished on time very easy communication cool guy.`,
         name: "skaterstudios",
         role: "Placeholder",
         avatar: "./pictures/review1.png",
+        stars: 5,
       },
       {
         body: `I vouch 9/10 for his honest and hard work ethic.`,
         name: "RunItTakeo",
         role: "Placeholder",
         avatar: "./pictures/review2.png",
+        stars: 4.5,   // 9/10 → 4.5 out of 5 stars
       },
       {
         body: `Vouch 10/10 Good guy 👏.`,
         name: "Kurt",
         role: "Placeholder",
         avatar: "./pictures/review3.png",
+        stars: 5,
       },
       {
         body: `I'll keep this short, but he's my go-to from now on.`,
         name: "CenturionPreator",
         role: "Placeholder",
         avatar: "./pictures/review4.png",
+        stars: 5,
       },
       {
         body: `Gave me what I wanted exactly, colors on the spot and quite a fun person to talk to.`,
         name: "Hawk",
         role: "Placeholder",
         avatar: "./pictures/review5.png",
+        stars: 5,
       },
     ],
   },
-
   pricing: {
     pill: "Pricing",
     title: "Transparent Pricing",
-    desc: "Know exactly what you’re paying for from the start.",
+    desc: "Know exactly what you're paying for from the start.",
     plans: [
       {
         badge: "Starter",
@@ -282,8 +288,8 @@ He finished on time very easy communication cool guy.`,
     tagline: "",
     copyright: "© 2025 Auvality · All rights reserved",
     socials: {
-      x: "#",
-      discord: "#",
+      x: "https://x.com/auvality",
+      discord: "https://discord.com/users/1400548444669739158",
     },
   },
 };
