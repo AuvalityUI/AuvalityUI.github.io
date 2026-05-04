@@ -420,11 +420,16 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
       opacity: 0; transition: all .45s cubic-bezier(.175,.885,.32,1.275);
       cursor: default; overflow: hidden;
+      /* Own composited layer for crisp image rendering */
+      will-change: transform;
+      isolation: isolate;
     }
     .pop-img img {
       width: 100%; height: 100%; display: block;
       object-fit: cover; object-position: center;
       border-radius: 4px;
+      image-rendering: auto;
+      transform: translateZ(0);
     }
     .pop-img:nth-child(1) { left: 6px;  bottom: -8px; transform: rotate(0) scale(0.82); transition-delay: .07s; }
     .pop-img:nth-child(2) { right: 6px; bottom: -8px; transform: rotate(0) scale(0.82); transition-delay: .035s; }
@@ -496,8 +501,7 @@
       object-fit: contain;
       object-position: center;
       background-color: rgba(255,255,255,0.03);
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
+      image-rendering: auto;
     }
     .lightbox-img-main.fading { opacity: 0; }
     .lightbox-nav {
@@ -734,18 +738,20 @@
     .work-item {
       width: 220px; height: 145px; flex-shrink: 0; border-radius: 14px;
       background: var(--surface);
-      background-size: cover;
-      background-position: center;
       border: 1px solid var(--border);
       box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
       transition: transform .35s cubic-bezier(.175,.885,.32,1.275),
                   border-color .3s ease, box-shadow .35s ease;
       position: relative; overflow: hidden;
+      will-change: transform;
+      transform: translateZ(0);
+      isolation: isolate;
     }
     .work-item img {
       width: 100%; height: 100%; display: block;
       object-fit: cover; object-position: center;
       border-radius: 14px;
+      image-rendering: auto;
     }
     .work-item::after {
       content: ''; position: absolute; inset: 0; border-radius: inherit;
