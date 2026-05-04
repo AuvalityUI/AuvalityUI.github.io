@@ -270,7 +270,7 @@ He finished on time very easy communication cool guy.`,
     title: "Full Portfolio",
     desc: "Want to see more? Join now.",
     badgeText: "Discord Server",
-    infoTitle: "Placeholder",
+    infoTitle: "All from Auvality",
     infoDesc: "The Complete Experience.",
     joinBtnText: "Join Server",
     inviteLink: "https://discord.gg/YxDBg28Uxa",
@@ -279,7 +279,7 @@ He finished on time very easy communication cool guy.`,
 
   footer: {
     brandName: "Game UI Designer",
-    tagline: "Placeholder",
+    tagline: "",
     copyright: "© 2025 Auvality · All rights reserved",
     socials: {
       x: "#",
