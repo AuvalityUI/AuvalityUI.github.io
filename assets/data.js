@@ -115,7 +115,7 @@ const SITE_DATA = {
   projects: {
     pill: "Projects",
     title: "Selected Work",
-    desc: "Shipped projects.",
+    desc: "Click to view all.",
     comingSoonLabel: "Projects Coming Soon",
     workImages: [
       "./pictures/work1.png",
