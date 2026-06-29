@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Auvality integrated build: 2026-06-29 v3 -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -759,12 +758,12 @@
       gap: 13px;
       width: max-content;
       padding: 4px 0;
-      animation: heroWorkMarquee 42s linear infinite;
+      animation: heroWorkMarquee 96s linear infinite;
       will-change: transform;
     }
     .hero-work-marquee--bottom .hero-work-track {
       animation-direction: reverse;
-      animation-duration: 48s;
+      animation-duration: 108s;
     }
     @keyframes heroWorkMarquee {
       from { transform: translateX(0); }
@@ -1345,6 +1344,7 @@
   <img class="sakura-branch sakura-left"  src="pictures/branch1.png" alt="">
   <img class="sakura-branch sakura-right" src="pictures/branch1.png" alt="">
 
+  <!-- Single site navigation -->
   <nav class="site-navbar" id="siteNavbar" aria-label="Main navigation">
     <div class="site-navbar-inner">
       <a class="site-brand" href="#projects" aria-label="Auvality home">
@@ -1396,23 +1396,6 @@
     </div>
   </div>
   <div class="container">
-    <header class="header" id="siteHeader">
-      <div class="profile-section">
-        <div class="profile-img">
-          <img id="headerAvatar" src="" alt="Auvality" onerror="this.style.display='none'">
-        </div>
-        <div class="profile-info">
-          <h1 id="headerName"></h1>
-          <p id="headerRole"></p>
-        </div>
-        <div class="hdivider"></div>
-        <div class="status-badge">
-          <div class="status-dot"></div>
-          <span id="headerStatus"></span>
-        </div>
-      </div>
-      <div class="social-links" id="headerSocials"></div>
-    </header>
     <section class="hero" id="projects">    
       <div class="hero-marquee-scene" id="heroMarqueeScene" aria-hidden="true">
         <div class="hero-work-marquee hero-work-marquee--top">
@@ -1744,13 +1727,6 @@
   function boot() {
     const D = SITE_DATA;
     document.title = `${D.header.name} — Game UI/UX Designer`;
-    document.getElementById('headerAvatar').src            = 'pictures/avatar.png';
-    document.getElementById('headerName').textContent      = D.header.name;
-    document.getElementById('headerRole').textContent      = D.header.role;
-    document.getElementById('headerStatus').textContent    = D.header.statusText;
-    const hSoc = document.getElementById('headerSocials');
-    hSoc.appendChild(makeSocialBtn(D.header.socials.x,      'x',       'X (Twitter)'));
-    hSoc.appendChild(makeSocialBtn(D.header.socials.discord, 'discord', 'Discord'));
     document.getElementById('heroTitle').textContent    = D.hero.title;
     document.getElementById('heroSubtitle').textContent = D.hero.subtitle;
     document.getElementById('heroCtaLeft').textContent  = D.hero.ctaLeft;
