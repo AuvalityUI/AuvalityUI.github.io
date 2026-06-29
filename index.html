@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Auvality integrated build: 2026-06-29 v3 -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="./assets/data.js"></script>
+  <script src="./assets/data.js?v=20260629-v3"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -1063,9 +1064,278 @@
     .footer-col ul li a:hover { padding-left: 0; }
     .social-btn { transition: color .3s, border-color .3s, transform .35s cubic-bezier(.175,.885,.32,1.275), box-shadow .3s; }
     .section-title { transition: opacity .6s, transform .6s; }
+
+
+    /* Integrated entrance */
+    body.entrance-active { overflow: hidden; }
+    #cursor-dot, #cursor-ring { z-index: 100001; }
+    .entrance {
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      display: grid;
+      place-items: center;
+      background: #070707;
+      color: var(--text);
+      transform: translateY(0);
+      visibility: visible;
+      transition: transform .95s cubic-bezier(.77, 0, .18, 1), visibility 0s linear 0s;
+      will-change: transform;
+    }
+    .entrance::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,.025), transparent 18%),
+        radial-gradient(circle at 50% 46%, rgba(255,255,255,.028), transparent 34%);
+    }
+    .entrance.hide {
+      transform: translateY(100%);
+      visibility: hidden;
+      pointer-events: none;
+      transition: transform .95s cubic-bezier(.77, 0, .18, 1), visibility 0s linear .95s;
+    }
+    .enter-button {
+      position: relative;
+      z-index: 1;
+      border: 0;
+      background: transparent;
+      color: rgba(255,255,255,.92);
+      padding: 16px 10px 12px;
+      font-family: var(--ff-head);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      cursor: none;
+      transition: color .25s ease, transform .25s ease;
+    }
+    .enter-button::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      margin-top: 8px;
+      background: currentColor;
+      transform: scaleX(.34);
+      transform-origin: center;
+      transition: transform .32s cubic-bezier(.16,1,.3,1);
+    }
+    .enter-button:hover { color: #fff; transform: translateY(-2px); }
+    .enter-button:hover::after,
+    .enter-button:focus-visible::after { transform: scaleX(1); }
+    .enter-button:focus-visible { outline: none; }
+
+    /* Integrated navigation */
+    .site-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 9000;
+      width: 100%;
+      min-height: 64px;
+      background: rgba(8,8,8,.88);
+      border-top: 1px solid rgba(255,255,255,.1);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 12px 35px rgba(0,0,0,.22);
+      backdrop-filter: blur(20px) saturate(120%);
+      -webkit-backdrop-filter: blur(20px) saturate(120%);
+      transition: opacity .55s ease, transform .55s cubic-bezier(.16,1,.3,1), background .25s ease;
+    }
+    body.entrance-active .site-navbar {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    .site-navbar-inner {
+      width: min(100%, 1020px);
+      min-height: 64px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+      position: relative;
+    }
+    .site-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      color: var(--text);
+      font-family: var(--ff-head);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -.025em;
+      white-space: nowrap;
+    }
+    .site-brand-logo {
+      width: 25px;
+      height: 25px;
+      display: block;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,.1));
+    }
+    .site-nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .site-nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 0 14px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      color: rgba(255,255,255,.54);
+      font-family: var(--ff-head);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .01em;
+      transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+    }
+    .site-nav-link:hover {
+      color: var(--text);
+      background: rgba(255,255,255,.055);
+      border-color: rgba(255,255,255,.07);
+      transform: translateY(-1px);
+    }
+    .site-nav-link.active {
+      color: #111;
+      background: rgba(255,255,255,.94);
+      border-color: rgba(255,255,255,.94);
+      box-shadow: 0 0 22px rgba(255,255,255,.08), 0 6px 18px rgba(0,0,0,.25);
+    }
+    .site-nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 0 17px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 999px;
+      background: rgba(255,255,255,.96);
+      color: #111;
+      font-family: var(--ff-head);
+      font-size: 11px;
+      font-weight: 750;
+      white-space: nowrap;
+      transition: transform .25s cubic-bezier(.175,.885,.32,1.275), background .2s ease, box-shadow .25s ease;
+    }
+    .site-nav-cta:hover {
+      transform: translateY(-2px);
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(0,0,0,.38), 0 0 24px rgba(255,255,255,.08);
+    }
+    .site-nav-arrow { font-size: 14px; line-height: 1; transform: translateY(-1px); }
+    .site-menu-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      cursor: none;
+      transition: background .2s ease, border-color .2s ease;
+    }
+    .site-menu-toggle:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); }
+    .site-menu-toggle span,
+    .site-menu-toggle::before,
+    .site-menu-toggle::after {
+      content: '';
+      display: block;
+      width: 17px;
+      height: 1.5px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .site-menu-toggle span { margin: 4px 0; }
+    .site-menu-toggle.open::before { transform: translateY(5.5px) rotate(45deg); }
+    .site-menu-toggle.open span { opacity: 0; }
+    .site-menu-toggle.open::after { transform: translateY(-5.5px) rotate(-45deg); }
+    .site-mobile-cta { display: none; }
+    section, footer { scroll-margin-top: 86px; }
+
+    @media (max-width: 820px) {
+      .site-navbar { min-height: 58px; }
+      .site-navbar-inner {
+        min-height: 58px;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        padding: 0 20px;
+      }
+      .site-menu-toggle { display: flex; }
+      .site-nav-links,
+      .site-nav-cta { display: none; }
+      .site-nav-links.open {
+        display: flex;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 14px;
+        right: 14px;
+        padding: 10px;
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 18px;
+        background: rgba(10,10,10,.97);
+        box-shadow: 0 24px 60px rgba(0,0,0,.58);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 3px;
+      }
+      .site-nav-links.open .site-nav-link {
+        width: 100%;
+        justify-content: flex-start;
+        min-height: 45px;
+        padding: 0 15px;
+        border-radius: 12px;
+      }
+      .site-nav-links.open .site-nav-link.active {
+        color: var(--text);
+        background: rgba(255,255,255,.09);
+        border-color: rgba(255,255,255,.1);
+        box-shadow: none;
+      }
+      .site-nav-links.open .site-mobile-cta {
+        display: inline-flex;
+        justify-content: center;
+        margin-top: 5px;
+        min-height: 45px;
+        border-radius: 12px;
+        background: #fff;
+        color: #111;
+        font-weight: 750;
+      }
+    }
+    @media (max-width: 420px) {
+      .site-brand span { display: none; }
+      .site-navbar-inner { padding: 0 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .entrance, .entrance.hide { transition-duration: .01ms; }
+    }
+
   </style>
 </head>
-<body>
+<body class="entrance-active">
+
+  <div class="entrance" id="entrance" aria-label="Site entrance">
+    <button class="enter-button" id="enterButton" type="button">Enter</button>
+  </div>
+
   <div id="cursor-dot"></div>
   <div id="cursor-ring"></div>
   <div id="scrollProgress"></div>
@@ -1074,6 +1344,34 @@
   <div class="page-border page-border-right"></div>
   <img class="sakura-branch sakura-left"  src="pictures/branch1.png" alt="">
   <img class="sakura-branch sakura-right" src="pictures/branch1.png" alt="">
+
+  <nav class="site-navbar" id="siteNavbar" aria-label="Main navigation">
+    <div class="site-navbar-inner">
+      <a class="site-brand" href="#projects" aria-label="Auvality home">
+        <img class="site-brand-logo" src="pictures/logo.png" alt="">
+        <span>Auvality</span>
+      </a>
+
+      <ul class="site-nav-links" id="siteNavLinks">
+        <li><a class="site-nav-link active" href="#projects" data-section="projects">Work</a></li>
+        <li><a class="site-nav-link" href="#services" data-section="services">Services</a></li>
+        <li><a class="site-nav-link" href="#pricing" data-section="pricing">Pricing</a></li>
+        <li><a class="site-nav-link" href="#about" data-section="about">About</a></li>
+        <li><a class="site-nav-link" href="#community" data-section="community">Community</a></li>
+        <li><a class="site-nav-link site-mobile-cta" href="#booking">Start a project <span class="site-nav-arrow">↗</span></a></li>
+      </ul>
+
+      <a class="site-nav-cta" href="#booking">
+        Start a project
+        <span class="site-nav-arrow">↗</span>
+      </a>
+
+      <button class="site-menu-toggle" id="siteMenuToggle" type="button" aria-label="Toggle navigation" aria-controls="siteNavLinks" aria-expanded="false">
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Work preview">
     <div class="lightbox-inner" id="lightboxInner">
       <div class="lightbox-title-row">
@@ -1472,7 +1770,11 @@
       });
       if (el) grid.appendChild(el);
     });
-    const workImgs = [...new Set((D.projects.workImages || []).filter(Boolean))];
+    // Use every portfolio image shown by the site's work folders, plus any
+    // additional project images, so both hero marquees represent the full body of work.
+    const serviceWorkImgs = (D.services?.cards || []).flatMap(card => card.images || []);
+    const projectWorkImgs = D.projects?.workImages || [];
+    const workImgs = [...new Set([...serviceWorkImgs, ...projectWorkImgs].filter(Boolean))];
     const heroScene = document.getElementById('heroMarqueeScene');
     const heroTracks = [
       document.getElementById('heroWorkTrackTop'),
@@ -1821,5 +2123,78 @@
     document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
     document.addEventListener('mouseenter', () => { dot.style.opacity = ''; ring.style.opacity = ''; });
   })();
+
+  </script>
+  <script>
+  /* Integrated entrance and navigation */
+  (() => {
+    const entrance = document.getElementById('entrance');
+    const enterButton = document.getElementById('enterButton');
+    const navLinksWrap = document.getElementById('siteNavLinks');
+    const menuToggle = document.getElementById('siteMenuToggle');
+    const navLinks = [...document.querySelectorAll('.site-nav-link[data-section]')];
+
+    const closeMenu = () => {
+      if (!navLinksWrap || !menuToggle) return;
+      navLinksWrap.classList.remove('open');
+      menuToggle.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    const enterSite = () => {
+      if (!entrance || entrance.classList.contains('hide')) return;
+      entrance.classList.add('hide');
+      document.body.classList.remove('entrance-active');
+      window.setTimeout(() => entrance.setAttribute('aria-hidden', 'true'), 960);
+    };
+
+    if (enterButton) enterButton.addEventListener('click', enterSite);
+
+    if (menuToggle && navLinksWrap) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = navLinksWrap.classList.toggle('open');
+        menuToggle.classList.toggle('open', isOpen);
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      navLinksWrap.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.site-navbar')) closeMenu();
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeMenu();
+      });
+    }
+
+    const sectionPairs = navLinks
+      .map(link => ({ link, section: document.getElementById(link.dataset.section) }))
+      .filter(item => item.section);
+
+    let activeFrame = 0;
+    const updateActiveLink = () => {
+      activeFrame = 0;
+      const marker = window.scrollY + Math.min(window.innerHeight * .34, 260);
+      const orderedSections = [...sectionPairs].sort((a, b) => a.section.offsetTop - b.section.offsetTop);
+      let current = orderedSections[0]?.section.id || 'projects';
+      orderedSections.forEach(({ section }) => {
+        if (section.offsetTop <= marker) current = section.id;
+      });
+      navLinks.forEach(link => {
+        const isActive = link.dataset.section === current;
+        link.classList.toggle('active', isActive);
+        if (isActive) link.setAttribute('aria-current', 'page');
+        else link.removeAttribute('aria-current');
+      });
+    };
+
+    const queueActiveUpdate = () => {
+      if (!activeFrame) activeFrame = requestAnimationFrame(updateActiveLink);
+    };
+
+    updateActiveLink();
+    window.addEventListener('scroll', queueActiveUpdate, { passive: true });
+    window.addEventListener('resize', queueActiveUpdate, { passive: true });
+  })();
+
   </script>
 </body>
