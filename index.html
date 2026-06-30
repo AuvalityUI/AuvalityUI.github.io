@@ -36,20 +36,71 @@
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 10px; }
     * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.18) var(--bg); }
+    @keyframes ambientGradientDrift {
+      0%   { transform: translate3d(-7%, -5%, 0) scale(1.08) rotate(-2deg); }
+      38%  { transform: translate3d(5%, 1%, 0) scale(1.15) rotate(1.5deg); }
+      72%  { transform: translate3d(-1%, 7%, 0) scale(1.11) rotate(-0.5deg); }
+      100% { transform: translate3d(-7%, -5%, 0) scale(1.08) rotate(-2deg); }
+    }
+    @keyframes ambientGradientBreathe {
+      0%, 100% { opacity: .78; }
+      50%      { opacity: 1; }
+    }
+    html { background: #030303; }
     body {
-      background-color: #050505;
-      background-image:
-        radial-gradient(circle at 12% 0%, rgba(82,82,82,0.72) 0%, rgba(42,42,42,0.38) 28%, transparent 52%),
-        linear-gradient(145deg, #292929 0%, #171717 32%, #0a0a0a 64%, #000000 100%);
-      background-attachment: fixed;
-      background-size: cover;
+      background: transparent;
       color: var(--text);
       font-family: var(--ff-body);
       font-size: 15px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      isolation: isolate;
       cursor: none;
+    }
+    .ambient-background {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      background:
+        linear-gradient(145deg, #020202 0%, #090909 38%, #060606 68%, #010101 100%);
+    }
+    .ambient-background::before {
+      content: '';
+      position: absolute;
+      inset: -24%;
+      background:
+        radial-gradient(circle at 18% 28%, rgba(170,170,170,.28) 0%, rgba(96,96,96,.12) 24%, transparent 49%),
+        radial-gradient(circle at 82% 20%, rgba(118,118,118,.20) 0%, rgba(70,70,70,.09) 27%, transparent 52%),
+        radial-gradient(circle at 64% 84%, rgba(142,142,142,.16) 0%, rgba(78,78,78,.07) 30%, transparent 55%),
+        linear-gradient(118deg, transparent 24%, rgba(255,255,255,.045) 47%, transparent 68%);
+      filter: blur(34px);
+      will-change: transform, opacity;
+      animation:
+        ambientGradientDrift 26s cubic-bezier(.45,.05,.2,1) infinite,
+        ambientGradientBreathe 11s ease-in-out infinite;
+    }
+    .ambient-background::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 38%, transparent 0%, rgba(0,0,0,.08) 48%, rgba(0,0,0,.68) 100%),
+        linear-gradient(112deg, rgba(255,255,255,.018), transparent 27%, rgba(255,255,255,.01) 55%, transparent 78%);
+    }
+    @media (max-width: 700px) {
+      .ambient-background::before { inset: -35%; filter: blur(26px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ambient-background::before {
+        animation: none;
+        transform: translate3d(-2%, 0, 0) scale(1.1);
+        opacity: .9;
+      }
     }
     a { text-decoration: none; color: inherit; cursor: none; }
     ul { list-style: none; }
@@ -1079,7 +1130,9 @@
       z-index: 100000;
       display: grid;
       place-items: center;
-      background: #070707;
+      background: rgba(4,4,4,.72);
+      backdrop-filter: blur(18px) saturate(110%);
+      -webkit-backdrop-filter: blur(18px) saturate(110%);
       color: var(--text);
       transform: translateY(0);
       visibility: visible;
@@ -1092,8 +1145,9 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(to bottom, rgba(255,255,255,.025), transparent 18%),
-        radial-gradient(circle at 50% 46%, rgba(255,255,255,.028), transparent 34%);
+        linear-gradient(to bottom, rgba(255,255,255,.03), transparent 22%),
+        radial-gradient(circle at 50% 46%, rgba(255,255,255,.055), transparent 37%),
+        radial-gradient(ellipse at 50% 50%, transparent 20%, rgba(0,0,0,.34) 100%);
     }
     .entrance.hide {
       transform: translateY(100%);
@@ -1346,6 +1400,8 @@
   </style>
 </head>
 <body class="entrance-active">
+
+  <div class="ambient-background" aria-hidden="true"></div>
 
   <div class="entrance" id="entrance" aria-label="Site entrance">
     <button class="enter-button" id="enterButton" type="button">Enter</button>
