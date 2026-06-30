@@ -37,8 +37,12 @@
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 10px; }
     * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.18) var(--bg); }
     body {
-      background: radial-gradient(circle at 50% 0%, #191919 0%, #0b0b0b 38%, #030303 72%, #000000 100%);
+      background-color: #050505;
+      background-image:
+        radial-gradient(circle at 12% 0%, rgba(82,82,82,0.72) 0%, rgba(42,42,42,0.38) 28%, transparent 52%),
+        linear-gradient(145deg, #292929 0%, #171717 32%, #0a0a0a 64%, #000000 100%);
       background-attachment: fixed;
+      background-size: cover;
       color: var(--text);
       font-family: var(--ff-body);
       font-size: 15px;
