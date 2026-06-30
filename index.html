@@ -37,7 +37,8 @@
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 10px; }
     * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.18) var(--bg); }
     body {
-      background-color: var(--bg);
+      background: radial-gradient(circle at 50% 0%, #191919 0%, #0b0b0b 38%, #030303 72%, #000000 100%);
+      background-attachment: fixed;
       color: var(--text);
       font-family: var(--ff-body);
       font-size: 15px;
@@ -1183,6 +1184,17 @@
       justify-content: center;
       gap: 4px;
     }
+    .magnetic-nav {
+      --magnetic-x: 0px;
+      --magnetic-y: 0px;
+      --magnetic-lift: 0px;
+      transform: translate3d(
+        var(--magnetic-x),
+        calc(var(--magnetic-y) + var(--magnetic-lift)),
+        0
+      );
+      will-change: transform;
+    }
     .site-nav-link {
       position: relative;
       display: inline-flex;
@@ -1203,7 +1215,7 @@
       color: var(--text);
       background: rgba(255,255,255,.055);
       border-color: rgba(255,255,255,.07);
-      transform: translateY(-1px);
+      --magnetic-lift: -1px;
     }
     .site-nav-link.active {
       color: #111;
@@ -1229,7 +1241,7 @@
       transition: transform .25s cubic-bezier(.175,.885,.32,1.275), background .2s ease, box-shadow .25s ease;
     }
     .site-nav-cta:hover {
-      transform: translateY(-2px);
+      --magnetic-lift: -2px;
       background: #fff;
       box-shadow: 0 10px 28px rgba(0,0,0,.38), 0 0 24px rgba(255,255,255,.08);
     }
@@ -1353,15 +1365,15 @@
       </a>
 
       <ul class="site-nav-links" id="siteNavLinks">
-        <li><a class="site-nav-link active" href="#projects" data-section="projects">Work</a></li>
-        <li><a class="site-nav-link" href="#services" data-section="services">Services</a></li>
-        <li><a class="site-nav-link" href="#pricing" data-section="pricing">Pricing</a></li>
-        <li><a class="site-nav-link" href="#about" data-section="about">About</a></li>
-        <li><a class="site-nav-link" href="#community" data-section="community">Community</a></li>
-        <li><a class="site-nav-link site-mobile-cta" href="#booking">Start a project <span class="site-nav-arrow">↗</span></a></li>
+        <li><a class="site-nav-link magnetic-nav active" href="#projects" data-section="projects">Work</a></li>
+        <li><a class="site-nav-link magnetic-nav" href="#services" data-section="services">Services</a></li>
+        <li><a class="site-nav-link magnetic-nav" href="#about" data-section="about">About</a></li>
+        <li><a class="site-nav-link magnetic-nav" href="#pricing" data-section="pricing">Pricing</a></li>
+        <li><a class="site-nav-link magnetic-nav" href="#community" data-section="community">Community</a></li>
+        <li><a class="site-nav-link magnetic-nav site-mobile-cta" href="#booking">Start a project <span class="site-nav-arrow">↗</span></a></li>
       </ul>
 
-      <a class="site-nav-cta" href="#booking">
+      <a class="site-nav-cta magnetic-nav" href="#booking">
         Start a project
         <span class="site-nav-arrow">↗</span>
       </a>
@@ -2125,6 +2137,35 @@
     };
 
     if (enterButton) enterButton.addEventListener('click', enterSite);
+
+    const magneticButtons = [...document.querySelectorAll('.site-navbar .magnetic-nav')];
+    const magneticPointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    if (magneticPointer.matches && !reducedMotion.matches) {
+      magneticButtons.forEach(button => {
+        const resetMagnet = () => {
+          button.style.setProperty('--magnetic-x', '0px');
+          button.style.setProperty('--magnetic-y', '0px');
+        };
+
+        button.addEventListener('pointermove', event => {
+          const rect = button.getBoundingClientRect();
+          const distanceX = event.clientX - (rect.left + rect.width / 2);
+          const distanceY = event.clientY - (rect.top + rect.height / 2);
+          const strength = button.classList.contains('site-nav-cta') ? 0.24 : 0.32;
+          const maxPull = button.classList.contains('site-nav-cta') ? 9 : 7;
+          const pullX = Math.max(-maxPull, Math.min(maxPull, distanceX * strength));
+          const pullY = Math.max(-maxPull, Math.min(maxPull, distanceY * strength));
+
+          button.style.setProperty('--magnetic-x', `${pullX.toFixed(2)}px`);
+          button.style.setProperty('--magnetic-y', `${pullY.toFixed(2)}px`);
+        });
+
+        button.addEventListener('pointerleave', resetMagnet);
+        button.addEventListener('blur', resetMagnet);
+      });
+    }
 
     if (menuToggle && navLinksWrap) {
       menuToggle.addEventListener('click', () => {
